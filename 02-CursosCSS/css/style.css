@@ -9,8 +9,8 @@ Regla CSS consta de 2 partes
 }
 */
 
-/* Son mala práctica por que son bloqueantes a la hora de que el navegador lee esta instrucción */
-@import url("otro-hoja.css");
+/* Son mala práctica por que son bloqueantes a la hora de que el navegador lee esta instrucción(el navegador cuando entramos lee todo el 'contenido' y al momento de leer el import se queda ahi hasta termine de leer el contenido de esa hoja para poder seguir leyendo el otro contenido)  */
+@import url("otro-hoja.css"); /* la regla import es para colocar los estilos de otra pagina de estilos */
 
 h1 {
   color: orangered;
@@ -66,64 +66,63 @@ p {
   color: white;
 }
 
-.hijos-directos > li {
+.hijos-directos > li {         /*tiene que se directo de la clase hijos directos, li es en bloque(se pintan todos) */
   background-color: thistle;
 }
 
-.hijos-descendientes b {
+.hijos-descendientes b {     /*No importa si no es hijo directo(osea que no esta despues de ul), b es en linea(se pintan todos en un cierto espacio)    */
   background-color: thistle;
 }
 
 /* Los selectores de hermanos van a aplicar a los elementos que son hermanos y que estén por debajo del elemento de referencia */
-.hermanos-general ~ li {
+.hermanos-general ~ li { /* como la clase esta en el segundo li(en verano) se marcan los dos hermanos de abajo */
   background-color: thistle;
 }
 
-.hermanos-adyacentes + li {
+.hermanos-adyacentes + li {  /* la clase esta en el segundo li(verano) y solo se marca el siguiente de abajo */
   background-color: thistle;
 }
 
 /* Selectores de atributos */
-.selectores-atributos a[href] {
+.selectores-atributos a[href] { /* aplica los estilos a todos los enlaces que tengan el atributo href */
   color: orangered;
 }
 
-.selectores-atributos a[target="_blank"] {
+.selectores-atributos a[target="_blank"] { /*aplica los estilos a todos los enlaces que tengan el atributo target y aparte tenga el valor _blank  */
   font-weight: bold;
 }
 
-/* El comodín del * aplica el estilo si contiene el texto en cuestión en cualquier parte */
+/* El comodín del * aplica el estilo si contiene el texto en cuestión en cualquier parte, en este caso jonmircha */
 .selectores-atributos a[href*="jonmircha"] {
   font-size: 24px;
 }
 
-/* El comodín del ^ aplica el estilo si contiene el texto en cuestión al inicio */
-.selectores-atributos a[href^="http://"]
-{
-  text-decoration: none;
+/* El comodín del ^ aplica el estilo si contiene el texto en cuestión al inicio solamente */
+.selectores-atributos a[href^="http://"]{
+  text-decoration: none; /* que no tengan el subrayado(blog y notas, los demas empiezan con https:// */
 }
 
 /* El comodín del $ aplica el estilo si contiene el texto en cuestión al final */
 .selectores-atributos a[href$=".com"] {
-  background-color: black;
+  background-color: black; /* solamente inicio termina con .com */
 }
 
 /* El comodín del ~ aplica el estilo si contiene el texto en cuestión en una lista separada por espacios */
-.selectores-atributos a[class~="cursos"] {
-  background-color: midnightblue;
+.selectores-atributos a[class~="cursos"] {  
+   background-color: midnightblue; /* que exista la clase cursos */
 }
 
 /* El comodín del | aplica el estilo si contiene el texto en cuestión en una lista separada por espacios y que despues del texto en cuestión venga un guión medio - */
-.selectores-atributos a[class|="menu"] {
-  font-style: italic;
+.selectores-atributos a[class|="menu"] { /* menu tiene que estar seguida del guion, por eso solo esta regla aplica a cursos y a notas, en ahora no aplica porque solo tiene el menu solo */
+  font-style: italic; 
 }
 
 /* Selector Universal */
 * {
-  font-family: sans-serif;
+  font-family: sans-serif; /* se aplica a todos los elementos del documento html  */
 }
 
-.selector-universal * {
+.selector-universal * {  /*se aplica a todos los elementos dentro de la clase selector-universal   */
   font-size: 24px;
 }
 
@@ -132,83 +131,94 @@ Pseudoclases - Dan estilos dependiendo del contexto, posición o estado del elem
 https://developer.mozilla.org/es/docs/Web/CSS/Pseudo-classes
 */
 
-.form-pseudoclases *:required {
+.form-pseudoclases *:required { /*todos los elementos del form que sean del tipo required(seria un estado)  */
   border-color: yellow;
 }
 
-.form-pseudoclases *:valid {
+.form-pseudoclases *:valid { /*cuando llenamos el form, si lo llevamos bien, osea que el form sea valido(por ej el input tipo email tiene que validar q haya una arroba en los textos), el borde se va pintar de verde  */
   border-color: green;
 }
 
-.form-pseudoclases *:invalid {
+.form-pseudoclases *:invalid { /*cumple la misma funcion de arriba pero al reves, cuando el form sea invalido lo pinta de rojo, y ademas trabaja con el required porque es requerido y si no se llena el formulario requerido, el formulario es invalido  */
   border-color: red;
 }
 
-.form-pseudoclases *:focus {
+.form-pseudoclases *:focus { /*cuando cualquier elemento del formulario tenga el foco de la pagina se cambia el color de fondo */
   background-color: skyblue;
 }
 
-.form-pseudoclases *:disabled {
+.form-pseudoclases *:disabled { /*le doy estilo al elemento que esta desabilitado(en boton de enviar que tiene ek disabled) */
   background-color: pink;
 }
 
-.menu-pseudoclases a:visited {
-  color: olive;
+.menu-pseudoclases a:visited { /*dentro de la clase menu-pseudoclases hay enlaces, los enlaces tienen un color especifico y cuando los visito me cambia de color a un color medio violeta, con esta propiedad puedo cambiar el color de los enlaces visitados, si ponia solo a:visited este color iba a cambiar en todos los enlaces. Tiene que estar arriba para que no innhabilite el estado hover */
+  color: red;
 }
+/*el hover se puede usar para todos los elementos, para enlaces, para imagenes, para parrafos, etc.Ademas tiene que estar definido al final de estas pseudoclases.
+Importa mucho el orden:
+:link(es el que pone el color en los enlaces)
+:active
+:visited
+:hover
+En la pagina de mozilla developer aparece por orden(el enlace esta mas arriba) */
 
-.menu-pseudoclases a:hover {
+.menu-pseudoclases a:hover { /*dentro de la clase menu-pseudoclases hay enlaces, cuando pase por esos enlaces con el mouse me va cambiar el color de letra(a naranja)*/
   color: orange;
 }
 
-.p-pseudoclases:hover {
+
+
+
+.p-pseudoclases:hover { /*esto seria una prueba de que cualquier elemento puede tener el hover(es cuando el mouse para por el elemento seleccionado) en este caso selecionamos que cuando el mouse pase por la clase pseudoclases el tamaño de la fuente va aumentar  */
   font-size: 20px;
 }
 
-#temario-css:target {
+#temario-css:target {  /* cuando apreto el boton de la manito para que al temario, el fondo se pinta de ese color. */
   background-color: lightgreen;
 }
 
-.lista-pseudoclases li:first-child {
+
+.lista-pseudoclases li:first-child { /*en la clase lista-pseudoclases ya sabemos que hay una lista, el first-child va aplicar el estilo al primer elemento que tenga el elemento padre(li), en este caso cambia el color de la letra al primer elemento li*/
   color: green;
 }
 
-.lista-pseudoclases li:last-child {
+.lista-pseudoclases li:last-child { /*en este caso es para el ultimo elemento li, va a cambiar el color de letra*/
   color: violet;
 }
 
-.lista-pseudoclases li:nth-child(3) {
+.lista-pseudoclases li:nth-child(3) { /*con nth-child elegimos el elemento al que queremos aplicarle el estilo y le pasamos como argumento un numero que tiene que estar entre parentesis, en este caso al 3er elemento de la lista le cambio el color de la letra */
   color: navy;
 }
 
-.lista-pseudoclases li:nth-child(4n) {
+.lista-pseudoclases li:nth-child(4n) { /*4n significa que de 4 en 4 aplique los estilos, en este caso que el tamaño de la letra sea de 20px */ 
   font-size: 20px;
 }
 
-.lista-pseudoclases li:nth-child(3n + 1) {
+.lista-pseudoclases li:nth-child(3n + 1) { /*con 3n significa que vaya de 3 en 3: se pinta el 3ero, despues el 6to,9no y el 12vo; con el +1 lo que hago empiece en 1, despues va el 4to, despues va el 7mo y despues el 10mo */ 
   font-weight: bold;
 }
 
-.lista-pseudoclases li:nth-child(even) {
+.lista-pseudoclases li:nth-child(even) { /*even quiere decir pares, osea que el color de fondo de los numeros pares sea de amarillo */
   background-color: yellow;
 }
 
-.lista-pseudoclases li:nth-child(odd) {
+.lista-pseudoclases li:nth-child(odd) { /*odd quiere decir impares, osea que el color de fondo de los numeros imparres sea naranja */
   background-color: orange;
 }
 
-.articulo-pseudoclases p:first-of-type {
+.articulo-pseudoclases p:first-of-type { /*aca le estoy diciendo que el estilo se aplique al primer parrafo(osea el primero en su tipo), porque en la clase articulo-pseudoclases el primer elemento no es un p, es un header, pero con el of type me va marcar el primer parrafo que aparezca */
   background-color: pink;
 }
 
-.articulo-pseudoclases p:last-of-type {
+.articulo-pseudoclases p:last-of-type { /*aca le decimos que el color de fondo sea violet al ultimo p(al ultimo en su tipo) */
   background-color: violet;
 }
 
-.articulo-pseudoclases p:nth-of-type(3) {
+.articulo-pseudoclases p:nth-of-type(3) { /*aca le decimos que al tercer p(el tercero en su tipo) le pongamos el estilo fuchsia */
   background-color: fuchsia;
 }
 
-.articulo-pseudoclases *:not(p) {
+.articulo-pseudoclases *:not(p) { /*aca le decimos que le aplique estilos a todos las etiquetas y con el not(p) le decimos que menos a las etiquetas p */
   background-color: beige;
 }
 

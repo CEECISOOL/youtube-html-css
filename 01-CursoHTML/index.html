@@ -2,22 +2,25 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"><!--   es para que acepte todos los caracteres -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- titulo y descripcion deben ser diferentes POR PAGINA(TAMBIEN ES PARA LO DE LAS REDES SOCIALES) -->
   <!-- title - entre 55 y 65 caracteres -->
   <title>Aprendiendo HTML</title>
   <!-- description - no más de 165 caracteres -->
   <meta name="description" content="En esta página estamos aprendiendo lo fundamentos de HTML con @jonmircha">
-  <link rel="canonical" href="http://tudominio.com/la-url-canonica">
-  <link rel="icon" href="img/favicon.png">
-  <link rel="apple-touch-icon" href="img/favicon.png">
-  <meta name="theme-color" content="#FF6600">
-  <meta property="og:title" content="Aprendiendo HTML">
-  <meta property="og:description" content="En esta página estamos aprendiendo lo fundamentos de HTML con @jonmircha">
-  <meta property="og:image" content="https://tudominio.com/img/periodic-table-of-html-elements.png">
-  <meta property="og:url" content="https://tudominio.com/index.html">
+  <link rel="canonical" href="http://tudominio.com/la-url-canonica"> <!-- es la que le dice al navegador cual es la url importante -->
+  <link rel="icon" href="img/favicon.png"> <!-- es para poner un favicon en los navegadores de escritorio -->
+  <link rel="apple-touch-icon" href="img/favicon.png"> <!-- es para poner un favicon en los dispositivos moviles(por ejemplo cuando agregamos un pagina web a la pantalla principal del celular, va aparecer esa imagen) -->
+  <meta name="theme-color" content="#FF6600"><!-- es para cambiarle el color (en un formato hexadecimal) a la barra donde dice http,las opciones seria la parte de arriba DEL CELULAR -->
+  <!-- meta etiquetas para las redes sociales, para que aparezcan las tarjetas -->
+  <meta property="og:title" content="Aprendiendo HTML">  <!-- aca le ponemos el titulo, que la podemos(recomendable) copiar de la etiqueta tittle -->
+  <meta property="og:description" content="En esta página estamos aprendiendo lo fundamentos de HTML con @jonmircha"> <!-- aca ponemos la descripcion que tambien la copiamos de la meta description que tenemos arriba-->
+  <meta property="og:image" content="https://tudominio.com/img/periodic-table-of-html-elements.png"> <!-- aca ponemos una imagen, la imagen que ponemos es la de la tabla periodica de los elementos de HTML, la URL tiene que ser relativa al dominio, seria el url de la pagina mas el url de donde se encuentra la imagen-->
+  <meta property="og:url" content="https://tudominio.com/index.html"> <!-- seria la url podemos poner index o no, es una opcion que nosotros tomamos, pero si queremos hacer una de otro documento html de la misma pagina tenemos que poner el enlacec relativo-->
+  <!-- estas metaetiquetas agregadas es para twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@jonmircha">
+  <meta name="twitter:site" content="@jonmircha"><!-- esta es una opcion para agregarle nuestro twitter-->
   <style>
     h2 {
       color: orangered;
@@ -28,6 +31,7 @@
 
 <body>
   <h2 id="inicio">Aprendiendo HTML</h2>
+  <a href="index.html#fin">Fin de pag</a>
   <!-- Esto es un comentario -->
   <!--
     Enlaces de la sección de introducción a HTML y su documentación
@@ -493,7 +497,7 @@
     </article>
   </details>
   <br>
-  <details open>
+   <details open> <!-- CUANDO CARGUE LA PAGINA ESTE ACORDEON VA ESTAR ABIERTO, OSEA NO ES NECESARIO QUE LO ABRAMOS, LO PODEMOS CERRAR -->
     <summary>Título del Acordeón</summary>
     <article>
       <h3>Contenido del Acordeón</h3>
@@ -506,7 +510,7 @@
         voluptates earum numquam! Deleniti vitae illum alias sequi aspernatur magnam quo quaerat reiciendis.</p>
     </article>
   </details>
-  <dialog open>
+   <dialog open>  <!-- ES COMO UNA CAJA, TODAVIA NO ESTA SOPORTADA DEL TODO EN DISTINTOS NAVEGADORES -->
     Esto es una ventana modal en HTML
   </dialog>
   <br>
@@ -559,7 +563,7 @@
   <br>
   <input type="file" multiple>
   <br>
-  <input type="hidden" name="idioma" value="es">
+  <input type="hidden" name="idioma" value="es"> <!-- son formularios de tipo oculto, no aparecen  -->
   <br>
   <input type="email">
   <br>
@@ -589,16 +593,16 @@
     <option value="">Python</option>
   </select>
   <br>
-  <input type="text" value="jonmircha" readonly disabled>
+   <input type="text" value="jonmircha" readonly disabled> <!-- readonly significa solo lectura y disabled visualmente se va como inhabilitado el elemento(como gris)  -->
   <br>
   <input type="text" placeholder="Escribe tu nombre">
   <br>
   <h3>Ejemplo de Formularios</h3>
-  <h4>Formulario de Login</h4>
-  <form action="https://jonmircha.com/" method="POST" autocomplete="off">
-    <label for="usuario">Usuario: </label>
-    <input type="text" name="usuario" id="usuario" placeholder="Escribe tu usuario" pattern="^[A-Za-z]+$"
-      title="El campo sólo acepta letras" required>
+  <h4>Formulario de Login</h4> 
+   <form action="https://jonmircha.com/" method="post" autocomplete="off"> <!-- action seria hacia donde se va enviar el formulario, method: get se envia con la url o post se envia de forma oculta--> 
+    <label for="usuario">Usuario: </label> <!-- con el for hacemos referencia al input que tiene el id 'usuario' -->
+    <input type="text" name="usuario" id="usuario" placeholder="Escribe tu usuario" pattern="^[A-Za-z]+$" 
+      title="El campo sólo acepta letras" required><!-- cuando se envie el formulario se va a enviar con el name, osea que te dice que eso que enviaron es el usuario, y el id es para hacer referencia al label, pattern es un patron que queremos que valide nuestro formulario(el formulario permite solo letras mayusculas y minusculas de la a-z) con el tittle podriamos mandar las instruciones  -->
     <br>
     <!-- <input type="text" name="email" autocomplete="off"> -->
     <label for="password">Password: </label>
@@ -612,7 +616,7 @@
   <form>
     <p>Elige tu idioma:</p>
     <select name="idioma" required>
-      <option value="" selected>Elige una opción</option>
+       <option value="" selected>Elige una opción</option> <!-- selected significa que esa opcion esta por defecto-->
       <option value="es">Español</option>
       <option value="en">Inglés</option>
       <option value="fr">Francés</option>
@@ -622,15 +626,15 @@
     <p>Elige tu lenguaje de programación favorito:</p>
     <input type="radio" name="lenguaje" id="radio-js" value="js" required>
     <label for="radio-js">JavaScript</label>
-    <input type="radio" name="lenguaje" id="radio-py" value="py" checked>
+     <input type="radio" name="lenguaje" id="radio-py" value="py" checked>  <!-- checked significa que ese valor es 'elegido por defecto' -->
     <label for="radio-py">Python</label>
     <input type="radio" name="lenguaje" id="radio-php" value="php">
     <label for="radio-php">PHP</label>
     <p>Elige tus intereses:</p>
-    <label>
+     <label> <!-- es otra opcion para no usar for y el id: poner el input adentro del label  -->
       <input type="checkbox" name="intereses" value="deportes">
-      Deportes
-    </label>
+       Deportes<!-- los valores(value) va siempre en ingles y si lo ponemos en español hay que evitar usar caracteres que sean ajenos al ingles como los acentos o las ñ -->
+     </label> <!-- el name ponemos el mismo a todos los input y los identificamos con el value, tambien se puede usar varios checked -->
     <label>
       <input type="checkbox" name="intereses" value="finanzas" checked>
       Finanzas
@@ -653,26 +657,26 @@
         ¿Aceptas términos y condiciones?
       </label>
     </p>
-    <input type="submit">
+    <input id="click" type="submit">
     <input type="reset">
   </form>
   <h4>Formulario de Contacto</h4>
-  <!-- https://formsubmit.co/ -->
-  <form action="https://formsubmit.co/your@email.com" method="POST">
+  <!-- https://formsubmit.co/  esto hace que nos envien el formulario por mail, la pagina tiene que esta en un servidor -->
+  <form action="https://formsubmit.co/youremail@email.com" method="POST">
     <input type="text" name="nombre" placeholder="Escribe tu nombre" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
-      title="Nombre sólo acepta letras y espacios en blanco" required>
+       title="Nombre sólo acepta letras y espacios en blanco" required><!-- el patron acepta de la a-z del ingles, para poner los acentos y ñ hay que enumerarlas, el /s significa espacios -->
     <br>
     <input type="email" name="correo" placeholder="Escribe tu correo" pattern="^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$"
-      title="Formato de correo inválido" required>
+       title="Formato de correo inválido" required> <!-- el patron acepta \w que es cualquier caracter alfanumerico(letras y numeros),puntos, guion bajo y medio, el arroba, un texto, el punto, y al menos dos letras(como dominios de paises) -->
     <br>
-    <textarea name="comentarios" cols="30" rows="10" required></textarea>
+     <textarea name="comentarios" cols="30" rows="10" required></textarea> <!-- el atributo de pattern es solo para input -->
     <br>
     <input type="submit">
   </form>
   <br>
   <a href="index.html#inicio">☝️</a>
   <hr>
-  <h2 id="data-attributes">Data Attributes</h2>
+   <h2 id="data-attributes">Data Attributes</h2> <!-- empieza con la palabra data-nombre que quiera darle y con JS le sacamos provecho -->
   <ul>
     <li data-id="1" data-name="spring">Primavera</li>
     <li data-id="2" data-name="summer">Verano</li>
@@ -683,23 +687,29 @@
   <a href="index.html#inicio">☝️</a>
   <hr>
   <h2 id="metas-seo">Metaetiquetas para SEO y móviles</h2>
+  <p>En el head inserta la etiqueta canonica, en el video lo explica, dice que la etiqueta canonica(link rel="canonical" href="http://tudominio.com/la-url-canonica") es la que le dice al navegador cual url es la importante </p>
+  <p>tambien explica otras etiquetas que no tienen con el SEO pero complementan toda esta experiencia de las meta etiquetas, son las de favicon(link rel="icon" href="img/favicon.png") y lo de apple touch icon(link rel="apple-touch-icon" href="img/favicon.png")</p>
+  <p>explica lo de themme color que es para cambiarle la barra de navegacion de los celulares</p>
   <br>
   <a href="index.html#inicio">☝️</a>
   <hr>
   <h2 id="metas-social">Metaetiquetas para Redes Sociales</h2>
+  <p>explicacion de open graph(op), estas metaetiquetas van en el head tambien y se usan para compartir contenido en las redes sociales(por ejemplo cuando pegamos un enlace en una publicacion de wps, fb o linkedink salta la imagen, un titulo, una descripcion de esa pagina, enlace). En otras redes sociales se utilizan otros metodos por ejemplo Twitter, que hay que generar una metaetiqueta de twitter y luego utiliza las metaetiquetas de open graph</p>
   <br>
   <a href="index.html#inicio">☝️</a>
   <h2 id="accesibilidad">Accesibilidad Web</h2>
-  <h3 role="title">Las estaciones del año</h3>
+  <p>es para ayudar a las personas que tienen algun tipo de discapacidad y se ayudan de algun tipo de dispositivo para poner leer o ver la pagina web(por ejemplo utilizan una app que les lee la pagina)</p>
+  <h3 role="title">Las estaciones del año</h3> <!-- role significa rol, es el rol que cumplen por ejemplo cuando la app le lea esto seria algo asi como: el titulo tal,se viene una lista,item de lista primavera, item de lista... -->
   <ul role="list">
     <li tabindex="1" role="listitem">Primavera</li>
     <li tabindex="2" role="listitem">Verano</li>
     <li tabindex="4" role="listitem">Otoño</li>
     <li tabindex="3" role="listitem">Invierno</li>
   </ul>
+  <!--si el mouse no sirve y queres usar el tabs para pasar de 'texto', usamos tabindex que va marcando los textos cual es el sigiente(esto en los textos no se hace, sino que se hace en los enlaces por ej)-->
   <a role="link" aria-label="En este enlace encontrarás más información sobre las estaciones del año" href="#"
-    target="_blank">Más información...</a>
-  <!--
+    target="_blank">Más información...</a> <!-- tiene un rol de link, y una descripcion para que las apps le lean eso que significa mas informacion se usa la etiqueta aria-label -->
+  <!-- enlaces con mas informacion de la accesibilidad web
         https://web.dev/accessible/
         https://html5accessibility.com/
         https://www.w3.org/blog/news/archives/8889
@@ -707,10 +717,12 @@
          -->
   <br>
   <a href="index.html#inicio">☝️</a>
+  <h2 id='fin'>Adios</h2>
   <hr>
   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <script>
     console.log("Hola estamos aprendiendo HTML");
+   
   </script>
   <script src="assets/codigos.js"></script>
 </body>
