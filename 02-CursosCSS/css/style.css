@@ -10,6 +10,7 @@ Regla CSS consta de 2 partes
 */
 
 /* Son mala práctica por que son bloqueantes a la hora de que el navegador lee esta instrucción(el navegador cuando entramos lee todo el 'contenido' y al momento de leer el import se queda ahi hasta termine de leer el contenido de esa hoja para poder seguir leyendo el otro contenido)  */
+
 @import url("otro-hoja.css"); /* la regla import es para colocar los estilos de otra pagina de estilos */
 
 h1 {
@@ -36,9 +37,9 @@ Selectores Básicos
   3) Clases - atributo class - .
 */
 
-p {
+/* p {
   color: midnightblue;
-}
+} */
 
 /* Dar estilos con Id se considera un AntiPatrón */
 #parrafo-dos {
@@ -223,57 +224,60 @@ En la pagina de mozilla developer aparece por orden(el enlace esta mas arriba) *
 }
 
 /*
-Pseudoelementos - Dan estilos a partes específicas de un elemento, se usa el :: para diferenciarlos de las pseudoclases
+Pseudoelementos - Dan estilos a partes específicas de un elemento, se usa el :: para diferenciarlos de las pseudoclases pero tambien se puede usar solo con uno :, pero es una buena practica usarlo con dos para poder diferenciarlos
 https://developer.mozilla.org/es/docs/Web/CSS/Pseudoelementos
 */
 
-.saga-geminis::before {
-  content: "🤼‍♂️";
+/*los pseudoelementos after y before nos van a permitir agregar contenido antes o despues de un elemento en particular, la propiedad content en muy importante para estos pseudoelementos*/
+.saga-geminis::before {  /*antes de la clase tiene que agregar el contenido(lo que esta en content), en este caso agrega un emoji, con windows 10 apretamos la tecla de la venta mas punto. */
+  content: "🤼‍♂️"; 
 }
 
-.saga-geminis::after {
+.saga-geminis::after {/*despues de la clase tiene que poner el emoji del signo zodiacal */
   content: "♊";
 }
 
-.saga-precio::before {
+.saga-precio::before { /*antes de la clase tiene que poner el signo en pesos con letra en negrita  */
   content: "$";
   font-weight: bold;
 }
 
-.saga-precio::after {
+.saga-precio::after {/*despues de la clase tiene que poner la palabra USD con negrita  */
   content: "USD";
   font-weight: bold;
 }
 
-.p-pseudoelementos::first-letter {
+/*first letter y line aplican para cualquier elemento de bloque(parrafos, divs, encabezados, seccion,article, etc)*/
+
+.p-pseudoelementos::first-letter { /*first-letter hace referencia a la primer letra de la clase de p, en este caso la primera letra de p de esa clase va estar en negrita y con un tamaño de fuente de 32px */
   font-weight: bold;
   font-size: 32px;
 }
 
-.p-pseudoelementos::first-line {
-  color: coral;
+.p-pseudoelementos::first-line { /*first-line hace referencia a la primera linea de p de esa clase, en este caso el color de la fuente va a ser de coral(si achicamos la pagina se va formar una sola linea, pero si la agrandamos se forman dos o mas lineas, por lo cual si el tamaño de la pagina es menos de 100% se va pintar la linea entera, si ponemos mas de 100% el tamaño se forma mas de dos lineas el cual la primera sola se pinta  */
+  color: coral; 
 }
 
-.p-pseudoelementos::selection {
+.p-pseudoelementos::selection { /*hace referencia a cuando el usuario seleciona el texto(por ejemplo cuando estas copiando el texto de un articulo), en este caso cuando seleccione el texto para poder copiar, en vez de marcarse con el color de letra blanco y el de fondo celeste, se marcaria con el color de letra en greenyellow y con el color de fondo negro.Si quisieramos aplicar ese estilo para todo el documento ponemos el selector universal mas el pseudoelemento-> *::selection */
   color: greenyellow;
   background-color: black;
 }
 
-.input-pseudoelementos::placeholder {
+.input-pseudoelementos::placeholder { /*a la clase esa, le cambiamos el color de letra de la placeholder  */
   color: green;
 }
 
-/* Agrupar Selectores */
-.form-agrupar-selectores input[type="text"],
-.form-agrupar-selectores input[type="email"],
-.form-agrupar-selectores textarea {
+/* Agrupar Selectores */ /*para agrupar los estilos(o sea para que los inputs y el textarea tengan los mismos estilos) tengo que poner los selectores separados por una coma y al ultimo selector ponerle la llave  */
+.form-agrupar-selectores input[type="text"], /*estos eslitos se van aplicar para el input de tipo texto y, */
+.form-agrupar-selectores input[type="email"], /*estos estilos se van aplicar para el input de tipo email y,  */
+.form-agrupar-selectores textarea { /*estos estilos se van aplicar para el textarea  */
   border-color: yellow;
-  border-width: 2px;
-  border-style: dashed;
+  border-width: 2px; /*con esta propiedad hacemos que el grosor del borde sea el mismo(ya que los navegadores por defecto le dan ciertos estilos a los elementos, por lo que el grosor del borde no es el mismo)  */
+  border-style: dashed; /*el estilo del borde  */
   background-color: black;
   font-size: 20px;
-  display: block;
-  width: 300px;
+  display: block; /*hacemos que el input de tipo texto y de email, y el textarea sean elementos de tipo BLOQUE(en vez de linea) asi se acomodan uno abajo del otro.Cada uno de los inputs ocuparia una linea asi lograriamos que cada uno de los inputs este en una linea diferente(uno abajo del otro)*/
+  width: 300px; /*con esta propiedad decimos que los tres tengan el mismo ancho  */
 }
 
 /* 
@@ -290,14 +294,18 @@ La Cascada es el mecanismo en que el navegador aplica los estilos. Y toma en cue
   2) La Especificidad del Selector
   3) Orden de Aparición
 
+  El ejemplo que da es el de h1, muestra que atraves de inspeccionar elementos podemos ver que estilos se aplican y cuales no. Por ej tenemos estilos para h1 en la pagina de html, en la pagina de style.css y en la pagina de otra-hoja.css. Y en esa parte te muestra como se van definiendo los estilos.
+  En este caso el navegador va leyendo linea por linea, entonces en el archivo html tengo primero el link para ir al archivo style.css, luego en ese archivo tengo el import como primera instruccion que me dirige hacia otra-hoja.css. Finalmente el navegador le aplica a H1 los estilos que hay en otra-hoja.css y descarta los demas.Luego va al archivo style.css, que tiene el color de la letra orangered que esta en la linea 15, pero luego de eso en el archivo html en la linea 11 esta el color de la letra yellowgreen, por ese motivo se sobrescribe el color de style.css. Finalmente escribimos otro estilo, otro colo de letra en la linea de h1 el cual ponemos de color de letra lightskyblue y ese sobrescribe a los otros dos, por el cual ese color de letra queda definida para h1.
+
 La Especificidad es el peso que tiene un selector cuando hay conflicto de estilos. Se calcula de la siguiente forma:
-  Etiquetas y pseudoelementos -------------- 0,0,0,1
+  Etiquetas y pseudoelementos -------------- 0,0,0,1 (si el selector tiene etiquetas y pseudoelementos se suman en el ultimo digito, por ejemplo si tiene dos etiquetas seria  0,0,0,2)
   Clases, atributos y pseudoclases ------------0,0,1,0
   Identificadores -------------------------------0,1,0,0
   Estilos en línea--------------------------------1,0,0,0
   !important ------------------Rompe la especificidad
+Podemos evitar que tengan un grado de especificidad, podemos usar una clase y si tenemos que modificar algo dentro de esa clase vamos aplicando los estilos segun hemos estado viendo.
 
-La Herencia, es la capacidad de un selector de obtener (heredar) los valores de sus ancestros más cercanos, para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o inicializar la propiedad en cuestión con el valor initial
+La Herencia, es la capacidad de un selector de obtener (heredar) los valores de sus ancestros más cercanos, para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o inicializar la propiedad en cuestión con el valor initial.
 
 https://web.dev/learn/css/inheritance/#which-properties-are-inheritable
 */
@@ -340,20 +348,20 @@ blockquote#cita-marco {
 
 .cita-marco cite {
   background-color: pink;
-  background-color: inherit;
+  background-color: inherit;/* hereda la herencia del anterior(o sea el background color va a ser darkorange) */
   font-size: 24px;
-  font-size: initial;
+  font-size: initial; /*seria el valor inicial */
   border-style: inherit;
   border-color: inherit;
 }
-
+/* Los estilos dependen de la cascada y la especificidad, por ejemplo si le ponemos un color de fondo a blockquote con el selector de etiqueta, ese valdria 1, pero si ponemos en la clase cita-marco vale 10, pero si lo ponemos en la etiqueta blockquote que tenga la clase cita-marco vale 11(10 la clase y 1 la etiqueta), si lo ponemos en el id cita-marco vale 100, pero si ponemos la etiqueta blockquote que tenga el id cita-marco vale 101.Ahora si le ponemos la etiqueta blockquote que tenga el id cita-marco y que ademas tenga la clase cita-marco ese va valer 111(100 el id, 10 la clase y 1 la etiqueta).Ahora si le ponemos el estilo en linea, le ponemos tambien el color de fondo, el estilo en linea valdria 1000, por lo tanto no importa en que orden pongamos los estilos(no importa la cascada) sino que lo que mas importa es el peso del selectory y si hay dos estilos para la misma etiqueta ahi si tiene importancia la cascada(por ejemplo que pongamos dos selectores de etiqueta p y le pongamos a las dos distintos colores, ahi si tiene importancia la cascada). Hay una manera(que se considera mala practica) que es con la palabra important. Esta palabra rompe con la especificidad y con la cascada. Si tenemos dos important como en el ejemplo anterior, ahi va aplicar la cascada, va a ganar el important que fue definido al final(preescribe a los otros)*/
 /* 
 https://autoprefixer.github.io/
 https://caniuse.com/
 
 Prefijos de los navegadores
--webkit-user-select: none;
+-webkit-user-select: none; esta propiedad no funciona bien todavia por lo  tanto esta original que es user-select
 -moz-user-select: none;
 -ms-user-select: none;
-user-select: none;
+user-select: none; es la original de webkit
 */

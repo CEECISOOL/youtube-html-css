@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    html {
+    html { /*es para que cuando aprete los enlaces para ir a una parte del documento, especifica el comportamiento del desplazamiento */
       scroll-behavior: smooth;
     }
 
@@ -185,6 +185,7 @@
   <article id="pseudoelementos">
     <h2>Pseudoelementos</h2>
     <p>
+      <!-- Muestra el texto marcado con un estilo en cursiva o italica. Crea una caja EN LINEA -->
       <i>Bandai Myth Cloth Ex</i> <span class="saga-geminis">Saga de Géminis</span> <span class="saga-precio">500</span>
     </p>
     <p class="p-pseudoelementos">
@@ -209,11 +210,54 @@
   <hr>
   <article id="algoritmo-css">
     <h2>El Algoritmo de CSS</h2>
+    <p>Es la forma en que el navegador aplica los estilos al documento HTML. Es vital entender este concepto para que entiendas como se aplican y en algunas ocasiones se sobreescriben las reglas CSS.</p>
     <ol>
       <li>La Cáscada</li>
       <li>La Especificidad</li>
       <li>La Herencia</li>
     </ol>
+
+    <p>La Cascada: es el mecanismo en que el navegador aplica los estilos. Y toma en cuenta lo siguiente en este orden:(va a depender del origen del codigo, de la especificidad y del orden de aparicion)
+    <ol>   
+      <li>El Origen del Código(de donde viene el codigo):
+        <br>
+        -El User Agent (los estilos por defecto que va aplicando el navegador a las etiquetas)
+        <br>
+        -Personalizaciones del usuario(los estilos que nosotros como usuarios le hacemos al navegador, por ejemplo cuando ponemos al navegador en oscuro, o cuando entramos a la configuracion y aumentamos el tamaño de las letras, o aumentar o disminuir el zoom).
+        <br>
+        -Los estilos del autor(los estilos que le ponemos con las hojas de estilos de CSS).</li>
+      <li>La Especificidad del Selector(cuando un estilo entra en conflicto con otro, la especificidad es la que va a diferenciar que estilos se aplican y cuales no</li>
+      <li>Orden de Aparición(el orden en el que van apareciendo los estilos)</li>
+    </ol> 
+  
+    La Especificidad: es el peso que tiene un selector cuando hay conflicto de estilos. Se calcula de la siguiente forma:
+      <br><br>
+      Etiquetas y pseudoelementos -------------- 0,0,0,1 <br>(si el selector tiene etiquetas y pseudoelementos se suman en el ultimo digito, por ejemplo si tiene dos etiquetas seria  0,0,0,2)
+      <br>
+      Clases, atributos y pseudoclases ------------0,0,1,0
+      <br>
+      Identificadores -------------------------------0,1,0,0
+      <br>
+      Estilos en línea--------------------------------1,0,0,0
+      <br>
+      !important ------------------Rompe la especificidad
+    <br><br>
+    La especificidad hace referencia a la relevancia que tiene un estilo 
+        sobre un elemento de la página al cual le están afectando varios estilos 
+        de CSS al mismo tiempo. Es decir, hace referencia al grado de importancia 
+        de un estilo sobre otro. <br>
+        Orden de importancia:
+        <ul> 
+        <li>!important</li>
+        <li>Estilos inline</li> 
+        <li>ID</li>
+        <li>Clases y pseudoclases</li>
+        <li>Etiquetas y pseudoelementos</li>
+        </ul>
+    <br>
+    La Herencia: es la capacidad de un selector de obtener (heredar) los valores de sus ancestros más cercanos, para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o inicializar la propiedad en cuestión con el valor initial
+    </p>
+    <!-- para hacer una cita sirve blockquote y cite -->
     <blockquote id="cita-marco" class="cita-marco" style="background-color: rebeccapurple;">
       Sé tolerante con los demás y estricto contigo mismo - <cite>Marco Aurelio</cite>
     </blockquote>
@@ -221,15 +265,18 @@
   </article>
   <article id="reseteo-normalizacion">
     <h2>Reseteo y Normalización de Estilos</h2>
+    <p>Reset no se utliza ya, porque resetea casi todos los estilos a 0. Por ejemplo pusimos la hoja de reset.css al documento html(en el head) y cambio todo, el margen en 0, el padding el borde en 0, el font size al 100%, etc.</p>
+    <br>
+    <p>Normalize (la pagina) podemos utilizar, es mejor que utlizar el reset</p>
     <a href="index.html#temario-css">☝️</a>
   </article>
   <hr>
   <article id="prefijos-navegadores">
     <h2>Prefijos de los Navegadores</h2>
     <ul>
-      <li>Navegadores de Microsoft <code><b>-ms-</b></code></li>
-      <li>Firefox <code><b>-moz-</b></code></li>
-      <li>Todos los demás navegadores <code><b>-webkit-</b></code></li>
+      <li>Navegadores de Microsoft <code><b>-ms-</b></code>(-ms-user-select:none;)</li>
+      <li>Firefox <code><b>-moz-</b></code>(-moz-user-select: none;)</li>
+      <li>Todos los demás navegadores <code><b>-webkit-</b></code>(-webkit-user-select: none;)</li>
     </ul>
     <a href="index.html#temario-css">☝️</a>
   </article>
