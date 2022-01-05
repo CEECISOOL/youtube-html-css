@@ -19,40 +19,24 @@ h1 {
   height: 200px;
   /* propiedades de tipo shorthand */
   border-color: green;
-  border-top-color: red;
-  border-width: thick; /* thin - 1px , medium - 3px, thick - 5px */
-  border-style: solid;
-  border: 2px dashed blue;
+  border-top-color: red; /*aca definimos el color del borde de arriba, pero tambien lo podemos hacer con right, bottom, left(abajo, derecha e izquierda)  */
+  border-width: thick; /* para el borde podemos usar los px o podemos usar los siguientes valores:  thin: 1px , medium: 3px, thick: 5px */
+  border-style: solid; /*borde con linea continua  */
+  border: 2px dashed blue; /*aplico las tres propiedades(color, ancho y estilo) en una sola linea: el borde de 2px con linea discontinua y de color azul(ademas de solid y dashed tambien esta dotted q es punteado,etc)  */
 }
 
 .caja-uno,
 .caja-dos {
   background-color: chocolate;
-  border: medium solid orange;
-  /* 
-  Esto aplica para margin y padding
-  1 valor = aplicar a los 4 lados
-  2 valores =
-    primer valor es para los lados verticales (t/b)
-    segundo valor es para los lados horizontales (l/r)
-  3 valores =
-    primer valor es para top
-    segundo valor es para los lados horizontales (l/r)
-    tercer valor es para bottom
-  4 valores = Piensa en las manecillas del reloj
-    primer valor es para top (12)
-    segundo valor es para right (3)
-    tercer valor es para bottom (6)
-    cuarto valor es para left (9)
-    */
-  padding: 20px;
-  margin: 20px;
-  padding: 20px 40px;
-  margin: 40px 20px;
-  padding: 0 40px 20px;
-  margin: 50px 30px 0;
-  padding: 0 40px 20px 50px;
-  margin: 100px 50px 30px 0;
+  border: medium solid orange;  
+  padding: 20px; /*1 valor= aplicar a los 4 lados */
+  margin: 20px;  /*1 valor= aplicar a los 4 lados */
+  padding: 20px 40px; /*2 valores= primer valor es para los lados verticales (t/b, arriba abajo) segundo valor es para los lados horizontales (l/r, izquierda derecha)  */
+  margin: 40px 20px; /*2 valores= primer valor es para los lados verticales (t/b, arriba abajo) segundo valor es para los lados horizontales (l/r, izquierda derecha)  */
+  padding: 0 40px 20px;/*3 valores= primer valor es para top(arriba) segundo valor es para los lados horizontales (l/r, derecha izquierda) tercer valor es para bottom(abajo) */
+  margin: 50px 30px 0; /*3 valores= primer valor es para top(arriba) segundo valor es para los lados horizontales (l/r, derecha izquierda) tercer valor es para bottom(abajo) */
+  padding: 0 40px 20px 50px;/* 4 valores= Piensa en las manecillas del reloj primer valor es para top (arriba) segundo valor es para right (derecha) tercer valor es para bottom (abajo) cuarto valor es para left (izquierda) */
+  margin: 100px 50px 30px 0;/*4 valores= Piensa en las manecillas del reloj primer valor es para top (arriba) segundo valor es para right (derecha) tercer valor es para bottom (abajo) cuarto valor es para left (izquierda) */
 }
 
 /* 
