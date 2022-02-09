@@ -7,6 +7,7 @@ Regla CSS consta de 2 partes
   atributo: valor;
   atributo-de-mas-dos-palabras: otro-valor;
 }
+
 */
 
 /* Son mala práctica por que son bloqueantes a la hora de que el navegador lee esta instrucción(el navegador cuando entramos lee todo el 'contenido' y al momento de leer el import se queda ahi hasta termine de leer el contenido de esa hoja para poder seguir leyendo el otro contenido)  */

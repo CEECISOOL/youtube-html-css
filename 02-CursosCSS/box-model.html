@@ -92,6 +92,8 @@
   </table>
   <hr>
   <h2>Propiedad Visibility</h2>
+  <h4>Display-> visualizacion</h4>
+  <h4>Visibility-> visibilidad</h4>
   <div class="caja-none">
     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus, voluptates! Libero perspiciatis voluptatibus
     explicabo dolores quidem nobis vero suscipit, natus totam, sequi vitae adipisci minus nesciunt amet! Veritatis,
@@ -104,6 +106,7 @@
   </div>
   <hr>
   <h2>Propiedad Overflow</h2>
+  <p>Esta propiedad nos permite decir que va pasar con el contenido que desborde su caja contenedora. Por ejemplo aca colocamos un parrafo, y definimos su altura y su ancho(width y height), el parrafo trata de amoldarse a sus medidas pero no es posible. Ejemplo: tiene el width 200px y el height 100px, la caja se pinta del color darkturquoise a esa altura, pero el parrafo es mas largo y no entra en esa caja, en esa altura, por lo tanto con el valor visible(que tiene por defecto) hace que la caja contenedora a esa altura se pinte y lo demas sea visible pero no este pintada, con el valor hidden se pinta solo el contenido y lo que desborda no se puede ver, ni se puede acceder. Finalmente con el scroll se puede ver el contenido con la altura definida atraves de una barra de desplazamiento. Tambien esta el valor auto, que significa que el navegador decide si mostrar el contenido con la barra o no.</p>
   <p class="overflow">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum tempore veniam nesciunt neque, laudantium
     praesentium eaque fugit quidem quis, soluta minus maxime, tenetur modi optio accusamus? Dignissimos amet natus
@@ -111,6 +114,9 @@
   </p>
   <hr>
   <h2>Tamaño de Caja</h2>
+  <p>box-sizing-> Define cómo se calculan el ancho y el alto del elemento: si incluyen el relleno y los bordes o no.</p>
+  <p> El valor por defecto es content-box que significa: El ancho y la altura del elemento solo se aplican al contenido del elemento. Por ejemplo un elemento tiene border-width: 12px, padding: 30px, width: 200px. El ancho completo es 24px + 60px + 200px = 284px.El contenido tiene el ancho definido. La caja se acomoda para esas dimensiones.</p> 
+  <p>Tambien esta el valor de border-box-> El ancho y la altura del elemento se aplican a todas las partes del elemento: el contenido, el relleno y los bordes.El tamaño de la caja lo considera desde el borde, es decir que todo el tamaño que le demos de padding y de border ya lo va a considerar. Por ejemplo un elemento tiene border-width: 12px, padding: 30px, width: 200px. El ancho completo es de 200px , pase lo que pase. La caja tiene el ancho definido. El contenido se adapta a esas dimensiones y termina siendo 200px - 60px - 24px = 116px .</p>
   <div class="box-sizing-content">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam ea accusamus nam sequi facere reprehenderit
     maxime, laborum, quidem in omnis porro perspiciatis nemo corporis est hic numquam iste cupiditate quam?
@@ -126,6 +132,10 @@
   </article>
   <hr>
   <h2>Propiedad Float & Clear</h2>
+  <p>Float-> Empuja el elemento hacia el lado izquierdo o derecho. </p>
+  <p>float: none; ->None es el valor por defecto. Elimina cualquier float definido previamente. El elemento permanecerá en el flujo natural de la página. Ningun elemento flota</p>
+  <p>float: left; ->Mueve el elemento al lado izquierdo de su contenedor. El elemento flota, busca el espacio mas hacia la izquierda en el que se puede ir acomodando .</p>
+  <p>float: right; ->Mueve el elemento al lado derecho de su contenedor.Busca el espacio mas hacia la derecha</p>
   <article class="container-floats">
     <section class="float-right">Este elemento flota a la derecha</section>
     <section class="float-left">Este elemento flota a la izquierda</section>

@@ -1,53 +1,60 @@
 .color-by-name {
-  background-color: coral;
-  color: rebeccapurple;
-  border: thick solid greenyellow;
+  background-color: coral;  /*color de fondo*/
+  color: rebeccapurple;   /*color de letra*/
+  border: thick solid greenyellow; /*color de borde*/
 }
 
 /* 
-Sistema Hexadecimal
+RGB TO HEX EN GOOGLE SALEN LOS COLORES
+
+Sistema Hexadecimal (empieza con #)
 0123456789ABCDEF
 
 RedGreenBlue (Medios Digitales) vs CyanMagentaYellowKey (Medios Impresos)
 
 Colores en HEX va a ser colores de 6 dígitos
 #ff6600
+Los primeros dos(ff) van a representar al rojo, los segundos dos(66) van a representar al verde, y los yltimos dos (00) van a representar al azul
 */
 .color-hex {
   background-color: #ff6600;
-  background-color: #f60;
-  background-color: #ff6605;
-  background-color: #00000000;
+  background-color: #f60; /*cuando los digitos son iguales, resumimos solo poniendo tres digitos en vez de 6*/
+  background-color: #ff6605; /*es otra variante naranja pero no podemos simplificarlo, porque no son iguales las tres parejas*/
+  
+  /*al color le puedo poner opacidad que va de 0%(totalmente transparente) hasta 100% (siendo el color al 100%). Por ej tengo #000000 a ese codigo le puedo agregar otros dos digitos que hacen referencia a la opacidad. Por ejemplo #00000000 tengo un color negro con 0% de opacidad, #00000050 tengo un color negro con un 50% de opacidad, #00000055 tengoun color negro con un 55% de opacidad*/
+  background-color: #00000000;  /*el color queda transparente*/
   background-color: #00000055;
-  background-color: #0003;
+  background-color: #0003; 
+  /*la opacidad tambien podes resumir cuando el color tiene los tres digitos iguales pero hay un problema.Cuando utilizamos la opacidad con los ocho digitos, ahi podemos usar dos digitos para la opacidad; en la parte resumida solo tenemos que utilizar un digito para la opacidad(1=10%, 2=20%, 3=30%, etc) */
   color: #12ac78;
-  border: thick solid #ffffff;
-  border: thick solid #fff;
-  border: thick solid #ff0000;
-  border: thick solid #f00;
-  border: thick solid #00ff00;
-  border: thick solid #0f0;
-  border: thick solid #0000ff;
-  border: thick solid #00f;
-  border: thick solid #000000;
-  border: thick solid #000;
+  border: thick solid #ffffff; /*blanco*/
+  border: thick solid #fff; /*blanco resumido*/
+  border: thick solid #ff0000;  /*rojo puro*/
+  border: thick solid #f00; /*rojo puro resumido*/
+  border: thick solid #00ff00;  /*verde puro*/
+  border: thick solid #0f0; /*verde resumido*/
+  border: thick solid #0000ff; /*azul puro*/
+  border: thick solid #00f; /*azul resumido*/
+  border: thick solid #000000;  /*saturacion de todos los colores, negro*/
+  border: thick solid #000; /*negro resumido*/
 }
 
 /* 
 Sistema RGB
+va del 255 al 0(el maaximo numero que acepta el rgb es 255 y el minimo un 0)
   Acepta 8 bits por canal de color
-  Bit (0/1) 2 elevado a la potencia 8 = 2*2*2*2*2*2*2*2 = 256 
+  Bit (0/1) 2 elevado a la potencia 8 = 2*2*2*2*2*2*2*2 = 256 (0 al 255, osea el 0 se toma en cuenta) 
   Por cada canal de color tenemos valores que van del 0 al 255
 */
 .color-rgb {
-  background-color: rgb(255, 255, 255);
-  background-color: rgb(255, 0, 0);
-  background-color: rgb(0, 255, 0);
-  background-color: rgb(0, 0, 255);
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.92);
-  color: rgb(255, 102, 0);
-  border: thick solid rgb(128, 109, 7);
+  background-color: rgb(255, 255, 255);  /*blanco*/
+  background-color: rgb(255, 0, 0); /*rojo puro*/
+  background-color: rgb(0, 255, 0); /*verde puro*/
+  background-color: rgb(0, 0, 255); /*azul*/
+  background-color: rgb(0, 0, 0); /*negro*/
+  background-color: rgba(0, 0, 0, 0.92);  /*acepta opacidad, pero en vez de usar rgb utilizo RGBA el cual el cuarto digito es para la opacidad que va del 0 al 1(0=0% y 1=100%), para eso utilizo numero digitales*/
+  color: rgb(255, 102, 0);  /*como un color naranja*/
+  border: thick solid rgb(128, 109, 7);  
 }
 
 /* 
@@ -72,16 +79,17 @@ El tercer valor es Lightness (Luminosidad del Color)
   100% -> blanco
 */
 .color-hsl {
-  background-color: hsl(0, 100%, 50%);
-  background-color: hsl(120, 100%, 50%);
-  background-color: hsl(240, 100%, 50%);
-  background-color: hsl(30, 100%, 50%);
-  background-color: hsla(30, 100%, 50%, 0.5);
-  background-color: hsla(30, 100%, 50%, 0.25);
-  background-color: hsla(30, 100%, 50%, 0);
-  background-color: hsla(30, 100%, 50%, 0.75);
-  color: hsl(0, 0%, 100%);
-  color: hsl(0, 0%, 0%);
+  background-color: hsl(0, 100%, 50%); /*rojo puro*/
+  background-color: hsl(120, 100%, 50%); /*verde puro*/
+  background-color: hsl(240, 100%, 50%); /*azul puro*/
+  background-color: hsl(30, 100%, 50%); /*naranja puro*/
+  /*acepta opacidad utilizando HSLA en vez de hsl. El cuarto digito hace referencia a la opacidad que va del 0 al 1 (0=0% tranparente y 1=100% color puro)y utlizamos decimales.*/
+  background-color: hsla(30, 100%, 50%, 0.5); /*naranja con opacidad al 50%*/
+  background-color: hsla(30, 100%, 50%, 0.25); /*naranja con opacidad al 25%*/
+  background-color: hsla(30, 100%, 50%, 0); /*negro, porque tiene 0 opacidad*/
+  background-color: hsla(30, 100%, 50%, 0.75); /*naranja con opacidad al 75%*/
+  color: hsl(0, 0%, 100%);  /*blanco*/
+  color: hsl(0, 0%, 0%); /*negrp*/
   border: thick solid hsl(210, 75%, 65%);
 }
 
@@ -91,12 +99,13 @@ Valor currentColor: Hereda el valor por defecto o asignado de la propiedad color
 */
 .color-transparent-current {
   background-color: darkmagenta;
-  background-color: currentColor;
-  background-color: transparent;
+  background-color: currentColor; /*si la caja no tiene color asignado aca(color), se va al siguiente ancestro que seria el body(que seria el color negro por el color de letra). En este caso como el div esta dentro de una section que tiene el color de letra rojo, entonces tomaria como referencia ese color de letra para el fondo. Pero como aca esta asignado el color al olive, el currentColor toma como referencia ese color*/
+  background-color: transparent;  /*es como si no tuviera color de fondo*/
   color: olive;
-  border: thick solid currentColor;
+  border: thick solid currentColor; /*el currentColor se puede aplicar al borde tambien. Si el color no esta asignado aca, va a su siguiente ancestro, q seria el color rojo. Pero como el color esta asignado a olive, toma de referencia ese color*/
 }
 
+/*La opacidad va del 0 al 1(0% al 100%).El opacity en 0 hace como si estuviera oculta toda la caja y el texto, como si no existieria*/
 .opacity {
   background-color: orchid;
   color: navy;
@@ -108,17 +117,17 @@ Valor currentColor: Hereda el valor por defecto o asignado de la propiedad color
 }
 
 .opacity-00 {
-  opacity: 0;
+  opacity: 0;  /*valor de opacity al 0%*/
 }
 
 .opacity-10 {
-  opacity: 0.1;
+  opacity: 0.1; /*valor de opacity al 10%*/
 }
 
-.opacity-20 {
+.opacity-20 { /*valor de opacity al 20%*/
   opacity: 0.2;
 }
 
-.opacity-30 {
+.opacity-30 { /*valor de opacity al 30%*/
   opacity: 0.3;
 }

@@ -1,4 +1,4 @@
-/*
+ /*
 Posicionamiento CSS
 
   La propiedades FLOAT y POSITION nos permiten modificar la posición natural de cualquier elemento del documento HTML.
@@ -30,7 +30,7 @@ Posicionamiento CSS
   Estás 5 propiedades no funcionan con el valor de static.
 */
 
-/* static: Es el valor por defecto, significa que el elemento respeta el flujo del documento HTML, por lo que no se puede mover ni posicionar */
+/* static: Es el valor por defecto, significa que el elemento respeta el flujo del documento HTML, por lo que no se puede mover ni posicionar. Si le coloco top y left no pasa nada, o sea no se mueve, ya que tiene la propiedad position con un valor de static. */
 .static {
   background-color: yellow;
   position: static;
@@ -38,14 +38,19 @@ Posicionamiento CSS
   left: 10px;
 }
 
-/* relative: El elemento conserva sus dimensiones y posición original en el flujo del documento. Si se mueve toma como referencia su posición original */
+/* relative: El elemento conserva sus dimensiones y posición 
+original en el flujo del documento(respeta el espacio que ocuparia esa caja). Si se mueve toma como referencia su posición original.  */
 .relative {
   background-color: turquoise;
-  position: relative;
+  position: relative;  
+  /*si le pongo la position relative solamente no pasa nada, 
+  queda igual, respeta sus dimensiones y lo podemos mover. Para eso utilizamos top, left, bottom, right. Cuando le aplicamos un top de 50px eso no significa que la caja va a subir 50px, sino que desde la caja va a contar 50px para abajo. Cuando aplicamos un valor positivo a top significa que se esta alejando de top, es decir en lugar de irse hacia arriba se va hacia abajo. En left pasa lo mismo, el margen de la izquierda se va alejar 50px , eso significa que se va mover en sentido contrario. Lo mismo pasa con bottom y right.
+  Tambien podemos aplicar valores negativos. Por ejemplo si aplico top de -30px, ahi si se va estar alejando hacia arriba del margen top */
   width: 300px;
   height: 50px;
   /*  top: 50px;
   left: 50px; */
+  /*Aunque aparezcan en el boxmodel, bottom y right estan siendo ignorados porque top y left tienen preferencia por sobre bottom y right*/
   bottom: 50px;
   right: 50px;
   top: -30px;
@@ -59,7 +64,7 @@ Posicionamiento CSS
   2) Si no encuentra un ancestro relativo, se mueve respecto del documento HTML */
 .absolute {
   background-color: tomato;
-  position: absolute;
+  position: absolute; /*cuando le coloco position absolute pierde sus dimensiones, es un div(de bloque) y se comporta como una caja de linea y el navegador ya no respeta su posicion original. Para moverlo utiliza top, bottom, right, left. El posicionamiento relativo utilizaba su posicion original para moverse(osea tenia un top de 50px respecto a su posicion original), como el posicionamiento adsoluto pierde esa posicion original tiene dos formas: utilizando el posicionamiento padre relativo, o se mueve respecto el docuemento html. En este caso cuando utiliza top y left 0 se mueve respecto al documento HTML(se mueve a la esquina superior izquierda). Cuando lo pongo en right y bottom en 0 se coloca en la esquina inferior derecha. Lo mismo pasa con bottom y right, tienen mayor preferencia el top y left.*/
   width: 200px;
   height: 50px;
   /* top: 0;
@@ -70,7 +75,7 @@ Posicionamiento CSS
   bottom: 0;
 }
 
-.relative-parent {
+.relative-parent {  /*elemento padre*/
   background-color: khaki;
   position: relative;
   width: 600px;
@@ -79,18 +84,19 @@ Posicionamiento CSS
   left: 50px;
 }
 
-.absolute-child {
+.absolute-child {  /*elemento hijo(esta dentro del elemento padre)*/
   background-color: lightcoral;
   position: absolute;
   /* left: 0;
-  top: 0; */
+  top: 0; con left y top en 0-> el elemento hijo se va posicionar en la esquina superior izquierdo del elemento(caja) padre*/
   /* bottom: 0;
-  right: 0; */
+  right: 0; con el bottom y right en 0->el elemento hijo se va a posicionar en la esquina inferior derecho del elemento padre*/
   top: -50px;
   left: -30px;
 }
 
-/* fixed: El elemento pierde sus dimensiones y posición original en el flujo del documento. Si se mueve toma como referencia el documento HTML y queda fijo en la posición, cuando el scroll se mueva, el elemento no lo hará, queda FIJO */
+/* fixed: El elemento pierde sus dimensiones y posición original
+ en el flujo del documento. Si se mueve toma como referencia el documento HTML y queda fijo en la posición, cuando el scroll se mueva, el elemento no lo hará, queda FIJO.No se desplaza con el documento, siempre queda fijo en su posicion, en la pantalla por mas que bajemos la pagina */
 .fixed {
   background-color: lightgreen;
   position: fixed;
@@ -105,12 +111,15 @@ Posicionamiento CSS
 /* sticky: es un combinación de posicionamiento relative y fixed, para este posicionamiento las propiedades de top, left, bottom y right no mueven el elemento, sirven como un punto de referencia, mientras no lleguen a ese valor el elemento se comporta como relative, cuando llega se convierte en fixed
 
 Para que este comportamiento funcione el elemento sticky debe ser hijo directo del body o su elemento contenedor debe tener dimensiones definidas y sólo será sticky dentro de las dimensiones de su contenedor padre. */
+/*el posicionamiento sticky queda adelante de la caja padre de la caja absoluta con ancestro relativo porque tiene otro posicionamiento*/
 .sticky {
   background-color: lightskyblue;
   position: sticky;
-  top: 50px;
+  top: 50px; /*parece un posicionamiento relativo, pero cuando bajo la pagina la caja queda como fija, el top le dice a cuantos px tiene que estar, en este ejemplo cuando voy bajando la pagina la caja queda fija a 50px de top(o sea el top es relativo al documento HTML, por lo tanto si tiene top 50px cuando voy bajando la pagina la caja sticky queda alejado al 50px)*/
 }
 
+/*Creamos una caja padre al cual le damos una dimension de
+600px(El padre siempre tiene que tener una dimension de width y height, sino no se puede hacer el sticky). Al hijo le damos un color de fondo y le asignamos la position sticky con un top de 75px. El hijo sera sticky solo en la caja padre, o sea no podra ser sticky en otra parte del documento. Es decir solo va quedar fija y a 75px de top mientras este dentro de la caja padre*/
 .sticky-parent {
   border: thin dashed black;
   height: 600px;
@@ -127,6 +136,9 @@ Para que este comportamiento funcione el elemento sticky debe ser hijo directo d
 A mayor valor el elemento esta más al frente, a menor valor más al fondo.
 
 Un elemento padre nunca podrá estar sobre sus elementos hijos, sin embargo los elementos hijos si pueden dándoles un valor negativo y que el elemento padre no tenga definido valor de z-index */
+
+/*Cuando nosotros no establecemos un valor de zindex el primer 
+elemento que aparezca posicionado en nuestro documento HTML va a ser el que esta en el fondo, o sea si pusieramos un segundo elemento HTML se va posicionar adelante que el primero y si pusieramos otro elemento, ese elemento va estar adelante que el segundo y el segundo adelante que el primero.Y asi sucesivamente.*/
 .z-index-1,
 .z-index-2 {
   background-color: mediumaquamarine;
@@ -137,17 +149,19 @@ Un elemento padre nunca podrá estar sobre sus elementos hijos, sin embargo los 
 }
 
 .z-index-1 {
-  z-index: 1;
+  z-index: 1;  /*como tiene un zindex inicial de 1, "taparia a la caja 2, pero esta vuelve a tener un zindex mayor(2) por lo tanto vuelve a tapar a la caja 1, cuando ponemos la caja 1 en 0, la caja 2 esta en -1, por lo tanto la caja 1 vuelve a superponerse. Por lo tanto la caja 1 queda adelante de la caja 2.*/
   z-index: 0;
 }
 
 .z-index-2 {
-  top: -200px;
-  left: 100px;
+  top: -200px;  /*con esta propiedad se superpone a la caja1*/
+  left: 100px; /*con esta propiedad corro la caja2 para que quede mas a la derecha*/
   z-index: 2;
   z-index: -1;
 }
 
+/*Es muy extraño que coloquemos una caja hijo atras de la caja 
+padre, pero aca vemos el procedimiento. Si quiero que el hijo este atras que el padre se tiene que cumplir dos condiciones: le tengo que dar un valor negativo al zindex del hijo por ej -1 y el elemento padre no tiene que tener zindex, entonces asi logramos que el elemento padre quede delante del elemento hijo*/
 .z-index-parent {
   background-color: mediumorchid;
   width: 300px;

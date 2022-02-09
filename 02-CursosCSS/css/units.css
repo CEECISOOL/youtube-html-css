@@ -1,4 +1,4 @@
-/* 
+/*
 Unidades de Medida
   1) Absolutas (Su valor no cambia, son unidades del mundo real)
     pc, cm, mm, in, Q
@@ -19,11 +19,10 @@ Unidades de Medida
 
   Conversiones entre unidades - https://pxtoem.com/
 */
+ /*para que todas las cajas tengan border box, osea que la 
+ medida de todas las cajas sean igual a sus dimenciones, teniendo en cuenta el padding margin.Es decir cuando le ponga padding y margin, que la caja siga respetando esas medidas de width y height, que la caja siga siendo de la misma medida*/
 html {
   box-sizing: border-box;
-  font-size: 20px;
-  font-size: 32px;
-  font-size: 16px;
   background-color: black;
 }
 
@@ -31,7 +30,7 @@ body {
   background-color: blanchedalmond;
   /* margin: 0; */
 }
-
+/*reseteo de caja, siempre colocar*/
 *,
 *::after,
 *::before {
@@ -43,25 +42,32 @@ body {
   width: 500px;
   height: 400px;
   padding: 20px;
-  font-size: 32px;
+  font-size: 32px;  /*tamaño de fuente,unidad base por defecto 16px*/
   border: 5px solid rebeccapurple;
 }
-
+/*ems estan basadas en el tamaño tipografico, en el tamaño de 
+fuente, el tamaño por defecto es 16px. Por lo tanto 1em=16px.
+En este caso tiene 24px(se lo asignamos, sino seria 16px que trae por defecto), por lo tanto 1em=24px. Por eso en el padding le asigno 1em que son 24px a dos lados, y a los otros dos lados le asigno 12px, o sea 0.5em*/
 .ems {
   background-color: cadetblue;
   font-size: 24px;
   padding: 1em 0.5em;
   border: 5px solid rebeccapurple;
 }
-
-.em-child {
+/*el em va hacer referencia a la base del padre, o sea a la 
+medida de la fuente del padre, en este caso tiene una medida de font size de 24px que seria igual a 1em*/
+.em-child { /*caja hija*/
   background-color: salmon;
   border: thick solid beige;
-  margin: 0.5em;
-  padding: 1em;
-  font-size: 2em;
+  margin: 0.5em;/*la base del contenedor padre es de 24px*0.5em= 12px*/
+  padding: 1em; /*la base del contenedor padre es de 24px=1em*/
+  font-size: 2em;  /*la base es de 14px por lo tanto 24px*2em= 48px, el tamaño de la letra es 48px*/
 }
 
+/*rems hace referencia a la etiqueta HTML, la ventaja es que 
+siempre va estar basado en el taamaño de letra que tenga el HTML. RECORDAR que si nosotros no lo especificamos el tamaño base es 16px.
+Por ejemplo aca tenemos en el padre 1rem 0.5rem de padding, por lo tanto basandonos en el tamaño de fuente (16px) el padding mide 16px y 8px. El padre tiene un tamaño de fuente de 24px, pero eso no afecta al rem ya que se basa en el tamaño de fuente del HTML. El hijo tiene un margin de 0.5rem que seria 8px, un padding de 1rem que seria 16px y el tamaño de fuente de 2rem que seria 24px, el hijo utiliza rem por lo tanto tambien se basa en el tamaño de fuente de HTML y ya no en el de su padre.
+Todo cambiaria si cambiamos el tamaño de fuente al HTML, por ej ponemos HTML{font-size: 24px}, el tamaño de fuente de HTML seria de 24px, por lo tanto todo cambiaria(el tamaño de fuente del hijo seria 2rem que seria igual a 48px TODO SI EL TAMAÑO DE FUENTE DE HTML SERIA 24PX) */
 .rems {
   background-color: cadetblue;
   font-size: 24px;
@@ -77,6 +83,8 @@ body {
   font-size: 2rem;
 }
 
+/*los exs son lo mismo que los ems pero estos estan basados en 
+la altura de la x de la fuente del elemento en cuestion */
 .exs {
   background-color: cadetblue;
   font-size: 24px;
@@ -92,20 +100,27 @@ body {
   font-size: 2ex;
 }
 
+/*cubre 10caracteres
+1ch=1caractere*/
 .chs {
   background-color: cadetblue;
   width: 10ch;
 }
 
+/*los porcentajes son relativos al tamaño del contenedor*/
 .percentages {
   background-color: darkkhaki;
-  padding: 5%;
-  margin: 20% 10%;
-  width: 80%;
-  font-size: 100%;
-  height: 100%;
+  padding: 5%;  /*utiliza el 5% del contenedor padre q seria el body*/
+  margin: 20% 10%; /*utilliza 20% arriba y abajo y 10% para dere e izq que saca del contenedor padre que seria el body*/
+  width: 80%;  /*solo ocupa el 80% del contenedor padre que es el body*/
+  font-size: 100%; /*utiliza el valor del contenedor, en este caso el tamaño de la fuente de html es de 16px*/
+  height: 100%; /*la altura del contenido(del body) va estar delimitado por el tamaño del contenido, es decir la altura la va definir el contenido.Por eso si le damos un height, la va ignorar.*/ 
 }
 
+ /*Podemos cambiar el comportamiento anterior(es decir que no 
+ ignore la altura del contenido) con la propiedad height cuando ya tiene un valor establecido, imaginense que a una caja le damos una altura definida en pixeles(unidades reales,absolutas)
+ Aca definimos una caja padre, donde mide 500px aunque la pantalla sea menor.El hijo ocupa el 50% del ancho de la caja padre y tiene una altura del 50% de la caja padre(o sea los valores lo saca de la caja padre)
+ Por lo tanto tenemos que tener en cuenta que si queremos dar altura a los porcentajes el contenedor padre tiene que tener bien definido un valor establecido (sus dimensiones) para que nosotros podamos aplicar los porcentajes en altura correcta, en ancho no hay problema.*/
 .height-parent {
   background-color: brown;
   width: 500px;
@@ -118,17 +133,35 @@ body {
   height: 50%;
 }
 
+/*viewport-> trabaja con el tamaño del viewport
+vw: ancho del viewport van de 1 a 100
+vh: alto del viewport van de 1 a 100
+*/
+
 .viewport {
   background-color: darkcyan;
   width: 50vw;
   /* Recuerda que la etiqueta body tiene margenes por defecto y recuerda que las barras de scroll del navegador también forman parte del viewport */
   width: 100%;
-  width: 100vw;
-  height: 50vh;
+  width: 100vw;  
+  height: 50vh;  /*tiene el 50% del tamaño del viewport(es decir que ocupa el 50% del tamaño de la pagina, no importa si achicamos o agrandamos siempre va ocupar el 50%)*/
+
+  /*si le damos 100vw y 100vh me va ocupar todo el tamaño del viewport, contando el margen del body*/
+
+  /*si yo quiero trabajar con hero image es recomendable utilizar o generar una clase que en el ancho lo defina con 100% y en la altura con vh COMO EN EL EJEMPLO VIEWPORTTWO DE ABAJO*/
+  height: 100vh;
+  font-size: 5vw;  /*la fuente se va haciendo mas pequeño o mas grande dependiendo de la anchura del viewport*/
+  padding: 2vh 2vw;  /*el padding top y bottom utilizamos vh y en left y right utilizamos vw y cuando yo voy aumentando o disminuyendo el tamaño del viewport el padding tambien va ir aumentando o disminuyendo*/
+}
+.viewportTwo{
+  background-color: darkcyan;
+  width: 100%;
   height: 100vh;
   font-size: 5vw;
   padding: 2vh 2vw;
 }
+/* vmax - entre vw y vh toma el que tenga mayor valor 
+   vmin - entre vw y vh toma el que tenga menor valor*/
 
 .vmin,
 .vmax {
@@ -136,4 +169,6 @@ body {
   border: thick solid cyan;
   width: 50vmax;
   height: 50vmin;
+
+  /*la altura de los elementos masomenos es la mitad de todo el espacio disponible en el viewport, pantalla, y la anchura es mas pequeña*/
 }

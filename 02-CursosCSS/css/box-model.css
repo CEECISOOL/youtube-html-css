@@ -40,12 +40,12 @@ h1 {
 }
 
 /* 
-Caja de Línea
-  - Ocupan el espacio necesario para mostrar su contenido.
+Caja de Línea(a, br, img, input, label, select, span, strong)
+  - Ocupan el espacio necesario para mostrar su contenido, osea solo ocupan el espacio requerido(si pongo un span y abajo otra span, se escriben las dos juntas ya que ocupan el espacio requerido)
   - No tienen dimensiones modificables (alto, ancho).
   - Permiten otros elementos a su lado.
   - Padding y margin solo empujan a elementos adyacentes en horizontal, NUNCA EN VERTICAL.
-Caja de Bloque
+Caja de Bloque(div, form, h1-h6, ol, p, table o li.)
   - Ocupan todo el ancho disponible, lo que genera saltos de línea.
   - Tienen dimensiones modificables (alto, ancho).
   - No permiten otros elementos a su lado (aunque especifique un ancho, siguen ocupando todo el espacio disponible a lo ancho, generando saltos de línea).
@@ -55,7 +55,7 @@ Caja de Bloque
 .caja-bloque {
   background-color: darkcyan;
   color: white;
-  width: 500px;
+  width: 500px; /*el width y height con la caja en linea no hace nada, queda igual, en la caja de bloque si se modifica*/
   height: 250px;
   border: medium solid black;
   padding: 16px;
@@ -67,20 +67,20 @@ Caja de Bloque
 }
 
 .caja-linea {
-  margin: 48px;
+  margin: 48px;  /*aplica el margin en left y righ, empujo los elementos en horizontal pero NO EN VERTICAL*/
   display: inline;
 }
 
 /* 
-Propiedad Display
-  inline
-  block
-  inline-block - Se comporta como un elemento de línea pero acepta modificar sus dimensiones (alto y ancho)
-  none
-  table
-  list-item
-  flex - ve mi curso de Flexbox CSS
-  grid - ve mi curso de Grid CSS
+Valores de propiedad Display
+  +inline- El elemento se convierte en un elemento en línea : se comporta como texto simple. Cualquier height y width aplicada no tendrá efecto.
+  +block- El elemento se convierte en un elemento de bloque : comienza en una nueva línea y ocupa todo el ancho.
+  +inline-block - Se comporta como un elemento de línea pero acepta modificar sus dimensiones (alto y ancho)
+  +none -El elemento se elimina por completo , como si no estuviera en el código HTML en primer lugar.
+  +table- El elemento se comporta como una tabla : <table>. Su contenido y elementos secundarios se comportan como celdas de tabla.
+  +list-item- El elemento se comporta como un elemento de lista : <li>. La única diferencia con el bloque es que un elemento de la lista tiene una viñeta.
+  +flex - ve mi curso de Flexbox CSS
+  +grid - ve mi curso de Grid CSS
 */
 .caja-none,
 .caja-linea-bloque,
@@ -93,27 +93,30 @@ Propiedad Display
 }
 
 .caja-linea-bloque {
-  display: inline-block;
+  display: inline-block;/*la caja de linea se comporta como una caja en bloque, el documento se sigue cargando, lo unico es que no se visualiza*/
 }
 
 .caja-none {
-  display: none;
+  display: none;  /*se oculto la caja con la clase none ya que le colocamos el valor none al display,*/
 }
 
 .caja-hidden {
-  visibility: hidden;
+  visibility: hidden;  /*oculto el elemento pero conservo el espacio que ocupa tal elemento*/
 }
+
+/*display none-> cuando ocultamos un elemento pero no importa conservar el espacio que ocupaba en la interfaz
+visibility hidden-> cuando ocultamos un elemento y si nos importa conservar dicho espacio*/
 
 .overflow {
   background-color: darkturquoise;
   width: 200px;
   height: 100px;
-  overflow: visible;
-  overflow: hidden;
-  overflow: scroll;
-  overflow: auto;
-  /* overflow-y: scroll; */
-  /* overflow-x: scroll; */
+  overflow: visible; /*valor por defecto, el contenido desbordado es visible, mientras que el elemento en si permanece en la altura especifica*/
+  overflow: hidden; /*el contenido desbordante esta oculto y no se puede acceder a el*/
+  overflow: scroll; /*el contenido desbordante es accesible gracias a una barra de desplazamiento*/
+  overflow: auto;/* el navegador decide si mostrar una barra de desplazamiento*/
+  /* overflow-y: scroll; si yo quiero aplicar el scroll solo en vertical, osea en el eje y*/
+  /* overflow-x: scroll; si yo quiero aplicar el scroll solo en horizontal, osea en el eje x */
 }
 
 /* 
@@ -128,12 +131,15 @@ Tamaño de Caja
   height: 250px;
   padding: 10px;
   border: thick solid black;
-  /* w 500 + 10 + 10 + 5 + 5 = 530 */
-  /* h 250 + 10 + 10 + 5 +5  = 280 */
+  /* width + padding izq + padding der + border izq + border der
+  500+ 10 + 10 + 5 + 5= 530 */
+  /* height + padding abajo + padding arriba + b abajo + b arriba
+  250 + 10 + 10 + 5 +5  = 280 */
+  /* En el box model aparece que mide 500*250, pero en realidad mide 530*280(por la suma anterior) */
 }
 
 .box-sizing-border {
-  box-sizing: border-box;
+  box-sizing: border-box;  /*como la propiedad box sizing esta considerando la caja desde el borde, todos los valores que le aplicamos de padding y de borde estan considerados en la altura y anchura que especificamos anteriormente(500px * 250px)Entonces en el tamaño es 500px*250px y en el box model dice 470*220, en el anterior el box model era 500px*250px ya que estaba en la parte del contenido, ahora como usamos el border-box el tamaño del contenido va reducido.*/
 }
 
 .container-col-3 {
@@ -143,18 +149,20 @@ Tamaño de Caja
   margin-top: 20px;
 }
 
-.container-col-3 > * {
+.container-col-3 > * {   /*a los elementos que son hijos directos de la clase container-col-3 vamos aplicarle: */
   box-sizing: border-box;
   width: 200px;
   border: thin solid red;
   padding: 10px;
-  float: left;
+  float: left;  /*flota a los elementos a la izquierda*/
 }
 
 /* 
 https://www.paulirish.com/2012/box-sizing-border-box-ftw/
 apply a natural box layout model to all elements, but allowing components to change
 */
+
+/*Aplicando este codigo al principio de la hoja de estilos(del html al inherit) resetamos a que el tamaño de todas las cajas de todos los elementos HTML que tengamos en el documento no empiecen desde el contenido sino desde el borde*/
 html {
   box-sizing: border-box;
 }
@@ -167,16 +175,21 @@ html {
 
 /* Floats */
 .container-floats {
-  background-color: cornflowerblue;
+  background-color: cornflowerblue;  /*no tiene color porque tiene dos floats, una flota a la izquierda y la otra a la derecha, por lo tanto es como si no tuviera cuerpo*/
 }
 
 .float-left {
-  float: left;
+  float: left;  /*flota a la izquierda*/
 }
 
 .float-right {
-  float: right;
+  float: right;  /*flota a la derecha*/
 }
+/*Si coloco el article flotante, y luego coloco otro article, seguramente quede 
+Este elemento flota a la izquierdaLorem ipsum dolor sit amet consectetur adipisicing elit. Este elemento flota a la derecha Aut, harum doloribus, officiis facilis quam animi voluptate expedita magni natus nesciunt aliquam quod vel. Iste sed cumque aliquid cupiditate labore doloremque.
+Por lo tanto para evitar este error colocamos la propiedad clear. Con el clear both se arregla ese problema de superposicion. Por lo tanto ya tenemos el elemento flotado a la izquierda, el de la derecha y luego viene el Lorem ipsum.
+EVITAR EL USO DE FLOAT!!!! 
+*/
 
 .clearfix {
   clear: both;
@@ -187,12 +200,16 @@ html {
   background-color: skyblue;
 }
 
+/* Aca le aplicamos a los sections de la clase margin-collapse 
+un borde, y un margin top y bottom de 16px. Suponemos que cada section va tener un bottom de 16px, entonces en el seccion 1 va tener un margen de abajo de 16px, y el seccion 2 va tener un margen de arriba de 16px, en total abria una distancia de 32px. Pero eso no sucede, sino que acoplan. Por lo tanto solo queda una distancia de 16px totales. Hay un colapso de margenes verticales.Cuando vayamos aplicar margenes verticales solo debemos utilizar una de estas propiedades, o que todos los elementos tengan margin-top o que todos los elementos tengan margin-bottom, pero tenemos que tratar de NO UTILIZAR AL MISMO TIEMPO MARGIN-TOP Y MARGIN-BOTTOM porque sino va a colapsar, se va a superponer.*/
 .margin-collapse section {
   border: thin solid black;
   margin-top: 16px;
   margin-bottom: 16px;
 }
 
+/*LA SUMA DE MARGENES HORIZONTALES SI FUNCIONA
+Aca los margenes se van sumando*/
 .margin-collapse span {
   border: thin solid black;
   display: inline-block;
@@ -201,7 +218,7 @@ html {
 }
 
 /* Centrado de Cajas */
-.sitio-web {
+.sitio-web {  /*quiero centrar el article(la caja) respecto a la pagina del navegador, para eso hago uso de margenes. Entonces la manera de centrar una caja es simplemente darle un valor auto al margin left y al margin right. Auto significa, ajustalo automaticamente. Nosotros sabemos que va tener un ancho de 800px, entonces si le damos a los margenes derecha e izquiera el valor auto, lo que va hacer es: toma los 800px de la anchura y luego con los pixeles que sobran lo va a repatir proporcionalmente al margen izq y al margen derecho */
   border: thin solid black;
   background-color: thistle;
   width: 800px;
@@ -210,5 +227,6 @@ html {
   margin-top: 200px;
   margin-left: auto;
   margin-right: auto;
-  /* margin: 0 auto; */
+  /* margin: 0 auto; margin 0 arriba y abajo, margin auto para der e izq -> no sirve porque a veces tiene margen arriba o margen abajo, y si colocamos el 0, va a sacar ese margen*/
+  /*text-align: center -> no centra la caja, sino que centra el contenido que tiene la caja dentro de la misma*/
 }

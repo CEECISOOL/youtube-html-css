@@ -1,17 +1,17 @@
 /* 
   Estilos de la Fuente
 
-  font-family
-  font-size
-  font-weight
-  font-style
-  font-variant
-  line-height
-  font
+  font-family: familia de fuentes, la fuente que podemos aplicar
+  font-size: el tamaño de fuente
+  font-weight: indica el grosor de la tipografia,por ejemplo ponerlo en negrita ficticia 
+  font-style: nos define el tipo de estilo(por ejemplo italica)
+  font-variant: normal, small-caps(convertir todo el texto a mayuscula)
+  line-height: es la altura de linea(es como el interlineado de word)
+  font: es como el borde, lo pongo todo en una linea de codigo y asi seria el orden: font-style font-variant font-weight font-size line-height and font-family. Entre font-size y line.height hay que poner una diagonal
 */
 
 .font {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif; /*si encuentra la tipografia georgia la aplica, sino utiliza la segunda, sino utiliza la tercera y asi sucesivamente*/
   font-family: sans-serif;
   font-size: 32px;
   font-weight: bold;

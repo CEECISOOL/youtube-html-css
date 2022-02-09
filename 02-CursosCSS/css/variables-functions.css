@@ -1,7 +1,14 @@
+/*si quiero que todas las variables existan para todos los 
+elementos HTML(en vez de aplicarla a cada selector por separado)entonces tenemos que utilizar una pseudoclase :root
+La pseudoclase root hace referencia a la etiqueta HTML pero con la diferencia que tiene mayor peso, es decir que tiene mas especificidad*/
+
+/*A los elementos que no tienen un color de letra definido, por 
+cascada le aplicaria el color de letra darkgreen y luego el color rojo. Pero en este caso el root tiene mayor especificidad por lo tanto quedaria en el color darkgreen*/
 :root {
-  color: darkgreen;
-  --default-bg-color: skyblue;
+  color: darkgreen;  /**/
+  --default-bg-color: skyblue; /* es una variable que hace referencia al color que quiero por defecto de fondo y se la puedo colocar a cualquier elemento del HTML */
 }
+
 
 html {
   color: red;
@@ -14,45 +21,54 @@ html {
   box-sizing: inherit;
 }
 
+/*Las variables son un espacio reservado de memoria que va 
+almacenar un dato, las variables en css van a tener un alcance un ambito en el que existan, ese ambito va a ser el selector en el que nosotros definamos la declaracion de la variable y todos sus elementos. Las variables tienen que definirse dentro de un selector, en este caso todas las variables tienen que empezar(se definen) con dos guiones --
+Las variables se tienen que definir adentro de los selectores y las pueden heredar sus hijos
+*/
+
 .custom-props-1 {
   --primary-color: gray;
-  --font-size: 32px;
-  background-color: var(--primary-color);
+  --font-size: 32px;  /*aunque utilice el mismo nombre que la porpiedad font size son cosas diferentes,en este caso defini una variable*/
+  background-color: var(--primary-color);  /*utilizamos una variable con la palabra var que lleva parentesis y recibe datos, por ejemplo en este caso llamamos la variable que queremos usar*/
 }
 
+
 .custom-props-2 {
-  background-color: var(--default-bg-color);
-  border: thin solid var(--border-color);
+  background-color: var(--default-bg-color);  /*le defino la variable que cree en el root, por lo tanto el color de fondo es ese mismo*/
+  border: thin solid var(--border-color);  /*cree una variable en el cuerpo de HTML, por lo tanto coloque el color de borde rojo*/
   padding: 1rem;
 }
 
 .custom-props-3 {
-  font-size: var(--font-size);
-  border: thin solid var(--border-color);
+  font-size: var(--font-size);  /*le estoy aplicando la variable que habia creado en el padre, osea un tamaño de fuente de 32px*/
+  border: thin solid var(--border-color); /*como cree una variable border-color en el cuerpo HTML, lo cree en la secction custom-props-2 por lo tanto tambien se puede aplicar en el hijo q seria custom-props-3, por lo tanto el color del borde quedaria de rojo(el props 3 esta dentro del props 2, por eso es el hijo y lo puede usar por mas que este en la hoja de html y no en la hoja css)*/
 }
 
+/*se puede crear dos variables del mismo nombre, pero en 
+diferentes selectores,en diferentes alcance, en diferente ambito, por ejemplo la variable --primary-color que cree en la clase custom-props-1 tiene un alcance en su selector y en sus hijos solamente, entonces cree otra variable en la clase title-props con el mismo nombre y que tiene alcance en ese sector y si tuviera hijos tambien*/
+
 .title-props {
-  --primary-color: navy;
-  color: var(--primary-color, orange);
-  background-color: var(--default-bg-color);
+  --primary-color: navy; /*puedo crear la variable dentro de este selector(dentro de este ambito o contexto) para que lo encuentre y no utilice el segundo valor*/
+  color: var(--primary-color, orange); /*le estoy aplicando la variable que habia creado, en caso de que ese valor no existia(la variable estaba en diferente ambito por lo tanto no se cambiaba el color de la letra, no se aplicaba el color gray por que estaba en diferente ambito la variable) entonces se aplicaba el color orange, pero como le puse una nueva variable con el mismo nombre ahora si me toma la primera opcion y no el orange*/
+  background-color: var(--default-bg-color); /*le defino la variable que cree en el root por lo tanto queda con ese color*/
 }
 
 .ch-10 {
-  --padding-size: 3ch;
-  --num-ch: 10ch;
-  background-color: var(--default-bg-color);
+  --padding-size: 3ch; /*creo una variable para que el padding mida 3ch*/
+  --num-ch: 10ch;  /*sabemos que son 10 caracteres*/
+  background-color: var(--default-bg-color); /*le coloco la varibale  ue cree en root para el color de fondo*/
   font-size: 2rem;
   padding: var(--padding-size);
-  width: calc(var(--num-ch) + var(--padding-size) * 2);
+  width: calc(var(--num-ch) + var(--padding-size) * 2); /*el ancho de la caja va a medir la suma del valor de la variable --num.ch y el valor de la variable --padding-size por 2(por que tenemos que considerar el padding de la derecha y el padding de la izquerda).Tambien podia hace calc(10ch + 3ch*2) pero es mejor hacerlo por variables, porque despues si tengo que cambiar algo, lo cambio en la variable solamente. Cuando haga calculos hay que dejar un espacio entre el operador y el operando, porque sino no funciona*/
 }
 
 .min-max {
   background-color: var(--default-bg-color);
   margin-top: 1rem;
-  width: min(300px, 20vw, 20rem);
-  height: max(200px, 25vh);
+  width: min(300px, 20vw, 20rem);  /*de la siguente lista de valores que coloque, va aplicar el que menos valor tenga*/
+  height: max(200px, 25vh); /*de la siguente lista de valores que coloque, va aplicar el que mas valor tenga*/
 }
 
 h1 {
-  font-size: clamp(2rem, 1rem + 3vw, 3rem);
+  font-size: clamp(2rem, 1rem + 3vw, 3rem);  /*2rem seria el valor minimo, 1rem+3vw seria el valor ideal, 3rem seriam el valor maximo*/
 }
