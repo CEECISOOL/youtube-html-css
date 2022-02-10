@@ -22,25 +22,33 @@
 }
 
 /* 
+Agregar tipografia externa: necesitamos tener los archivos fisicos de la tipografia(un archivo ttf) y para la web necesitamos el woff o woff 2(es un formato abierto de tipografia para la web, osea para que la web detecte la tipografia)
 Formato woff o woff2 - Web Open Font Format
 
-font-display:
+font-display: nos va decir como es que queremos cargar una fuente personalizada.Sus valores son:
   auto - permite que el navegador utilice el método predeterminado que suele ser block
   block - oculta brevemente el texto hasta que la fuente haya sido descargada por completo
   swap - indica al navegador que utilice la fuente alternativa para mostrar el texto hasta que la fuente personalizada se haya cargado por completo
   fallback - es una mezcla de auto y swap
   optional -ocultará el texto, luego lo cargará con la fuente alternativa y finalmente aplicará la fuente personalizada
 */
+
+/*tenemos que utilizar la @ para crear nuestra regla de font face*/
 @font-face {
-  font-family: "Chalet";
-  src: url("../assets/Chalet.woff") format("woff");
+  font-family: "Chalet";  /*definimos el nombre de nuestra tipografia*/
+  src: url("../assets/Chalet.woff") format("woff");  /*en la url entre dobles comillas pongo la ruta que tendria que utilizar para llegar al archivo; adicionalmente del url tengo que decirle el formato del archivo que vamos a utilizar(en este caso seria woff)*/
   font-display: swap;
-  /* src: url("../assets/Chalet.woff") format("woff"),
+  /* si tenemos mas de un archivo tipografico lo podemos expresar asi
+  src: url("../assets/Chalet.woff") format("woff"),
   url("../assets/Chalet.woff2") format("woff2"); */
+  /*font-display:  swap - indica al navegador que utilice la fuente alternativa para mostrar el texto hasta que la fuente personalizada se haya cargado por completo, es el valor ideal para utilizar*/
 }
 
+/*a la clase chalet le agregamos ese tipo de fuente colocando el 
+nombre que pusimos en el font face*/
+
 .chalet {
-  font-family: "Chalet", sans-serif;
+  font-family: "Chalet", sans-serif; /*le pongo la tipografia y una segunda opcion por seguridad por si no encuentra chalet*/
   font-size: 2rem;
 }
 
@@ -55,27 +63,36 @@ font-display:
   font-size: 2rem;
 }
 
+/*hay dos formas de utilizar google font: la primera es mandarlo 
+a llamar con un @import desde la hoja de estilos, la segunda es desde la hoja de estilo con dos links.Tambien nos da la opcion de descargar la tipografia */
+/*ES RECOMENDABLE UTILIZAR UNA SOLA FUENTE, MAXIMO TRES*/
+/*Cargo la tipografia de google con el link(es mas facil y recomendable), los links que me da google cuando selecciono la tipografia los copio en el head, en este caso para utilizar raleway de google me dio los siguientes links:
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">*/
+
+/*para aplicar la fuente de google, pongo el nombre que me sale 
+en google abajo de los links*/
 .raleway {
   font-family: "Raleway", sans-serif;
   font-size: 2rem;
 }
 
 /* 
-text-align
-text-decoration
-text-indent
-text-overflow
+-text-align: donde quiero alinear el texto, el valor por defecto es left(alineado a la izquierda), tambien podemos tenerlo a la derecha, justificado, o centrado
+-text-decoration: tenemos varios valores, por ejemplo el underline es el que pone como subrayado, es la que tiene como predeterminado los enlaces. Por ejemplo en los enlaces, le podemos quitar esa caracteristica, colocando -text-decoration:none. El valor overline pone una linea sobre el elemento
+-text-indent: es para darle una sangria
+-text-overflow: el clip hace que por ejemplo tengo un texto y se corta, el valor ellipsis hace que en vez de cortarse ponga puntos suspensivos.
+Para que este text-overflow funcione hay que tener la propiedad de overflow en hidden y adicionalmente una propiedad que se llama white-space con el valor de nowrap(white nos dice que hacemos con los espacios en blanco)
   overflow: hidden;
   white-space: nowrap;
-text-transform
-
-letter-spacing
-
-white-space
-
-word-break
-word-spacing
-writing-mode
+-text-transform: nos va servir para transformar el texto. Su posibles valores son capitalize que convierte la primera letra de cada palabra en mayúscula; otro valor es uppercase que convierte todas las letras en mayúsculas y por ultimo tenemos lowercase que convierte todas las letras en minúsculas. Su valor por defecto es none, que no hace ninguna transformacion.
+-letter-spacing: es el espaciado que va tener cada letra, cada caracter
+-white-space: es la que nos dice que hacer con los espacios en blanco. Los valores son los siguientes +nowrap: las secuencias de espacios se combinan en uno.Los saltos de línea se ignoran.
+El contenido del texto no se ajusta y permanece en una sola línea. +pre: El espacio en blanco se conserva exactamente . Se conservan secuencias de espacios. Las líneas se rompen solo en líneas nuevas y<br>. +pre-wrap; El espacio en blanco se conserva en su mayor parte . Se conservan secuencias de espacios. Las líneas se rompen en líneas nuevas <br>, pero también al llegar al final del elemento. +pre-line; Solo se conservan las líneas nuevas. Las secuencias de espacios se combinan en uno. Las líneas se rompen en líneas nuevas <br>, pero también al llegar al final del elemento
+-word-break: Define cómo deben dividirse las palabras al llegar al final de una línea.El valor por defecto es normal.El otro valor es break-all y este valor hace que las palabras sin espacio se rompan tan pronto como lleguen al final de una linea. En resumen es cuando se rompe la palabra, osea cuando el una palabra no le alcanza se tiene que ir para abajo, o se rompe(o sea esta la palabra y abajo le sigue la palabra)
+-word-spacing: define el espacio que va ir entre cada palabra
+-writing-mode: modo de escritura, el valor por defecto es horizontal-tb. Vertical lr: siginifica modo vertical y que vaya de  izquierda aderecha . Tambien esta el vertical rl
 */
 .text {
   font-size: 2rem;
