@@ -136,6 +136,11 @@ El contenido del texto no se ajusta y permanece en una sola línea. +pre: El esp
   word-spacing: 1rem;
 }
 
+/* material icons:google 
+Primero hay que copiar el link <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> en el head, en el cuerpo de HTML.
+Luego en el cuerpo de css, copiar lo siguiente.
+Luego copiar en el body de HTML dentro de span el nombre del icono con la clase material icons(todo se saca de google icons)
+*/
 .material-icons {
   font-family: "Material Icons";
   font-weight: normal;
@@ -160,3 +165,10 @@ El contenido del texto no se ajusta y permanece en una sola línea. +pre: El esp
   /* Support for IE. */
   font-feature-settings: "liga";
 }
+
+/* Bootstrap: tenemos que copiar el link en el head de HTML  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+Luego copiar de bootstrap icons la etiqueta i que corresponde a cada icono*/
+
+/* FonstAwesome: tenemos que copiar el link en el head de HTML
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  Luego debemos copiar de fontawesome icons la etiqueta i que corresponde a cada icono */

@@ -1,51 +1,55 @@
 .list {
   list-style-type: disc; /* default */
-  list-style-type: square;
-  list-style-type: circle;
-  list-style-type: lower-roman;
-  list-style-type: upper-roman;
-  list-style-type: decimal;
-  list-style-type: decimal-leading-zero;
-  list-style-type: none;
-  list-style-type: lower-greek;
-  list-style-image: url("../assets/favicon.png");
+  list-style-type: square; /*cuadrado*/
+  list-style-type: circle; /*circulo vacio*/
+  list-style-type: lower-roman; /*letra romana minuscula*/
+  list-style-type: upper-roman; /*letra romana mayuscula*/
+  list-style-type: decimal;  /*numero*/
+  list-style-type: decimal-leading-zero;  /*numero con 0 adelante*/
+  list-style-type: none; /*nada*/
+  list-style-type: lower-greek; /*letra griega*/
+  list-style-image: url("../assets/favicon.png"); /*la imagen tiene que ser exactamente del tamaño del la lista, sino no se visualiza*/
   list-style-image: url("../assets/cielo.png");
   list-style-image: none; /* default */
 }
 
 .list li {
-  list-style-type: none;
+  list-style-type: none; /*para que no aparezca ningun caracter*/
 }
 
-.list li::before {
-  content: "";
-  display: inline-block;
-  width: 1rem;
+/*para poner imagen como caracter de la lista*/
+
+.list li::before {  /*before crea contenido despues de li*/
+  content: "";  /*no genere texto*/
+  display: inline-block;  /*elementos en linea*/
+  width: 1rem; /*le damos dimensiones*/
   height: 1rem;
-  background-image: url("../assets/favicon.png");
+  background-image: url("../assets/favicon.png");  /*eligo imagne*/
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-repeat: no-repeat;  /*no se repita la imagen*/
+  background-position: center; /*para que este centrado*/
 }
+
+/*list-style-position: Define la posición de las viñetas de una lista.*/
 
 .list-2 li {
   background-color: coral;
-  list-style-position: inside;
-  list-style-position: outside;
+  list-style-position: inside; /*La viñeta estará dentro del elemento de la lista.Como es parte del elemento de la lista, será parte del texto y empujará el texto al principio.*/
+  list-style-position: outside; /*default, La viñeta estará fuera del elemento de la lista, como si no fuera parte del elemento de la lista. El inicio de cada línea de un elemento de la lista se alineará verticalmente.*/
 }
 
 .list-3 li {
-  background-color: cornsilk;
-  list-style: lower-latin url("../assets/cielo.png") outside;
+  background-color: pink; /*se lo aplicamos al contenedor, al ul*/
+  list-style: lower-latin url("../assets/cielo.png") outside; /* list-style-type list-style-image y list-style-position, la imagen no esta preparada asi que se ve mal*/
   list-style: lower-latin inside;
 }
 
 .text-column-4 {
-  list-style-position: inside;
-  column-count: 4;
-  column-gap: 1rem;
-  column-rule: thin dotted red;
-  column-width: 100px; /* tamaño mínimo de anchura de las columas */
+  list-style-position: inside; /*para que column-rule no pegue con los caracteres de la lista, le colocamos inside*/
+  column-count: 4; /*define el número de columnas del elemento, auto es por defecto.*/
+  column-gap: 1rem; /*Define el espacio entre las columnas del elemento, normal es por defecto*/
+  column-rule: thin dotted red; /*es como que le colocamos un borde*/
+  column-width: 100px; /* tamaño mínimo de anchura de las columas */ /*Define el número de columnas del elemento.*/
 }
 
 .text-column-3 {

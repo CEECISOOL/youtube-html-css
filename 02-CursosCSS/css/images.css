@@ -1,8 +1,12 @@
+/*Para que las imagenes sean responsivas(que se adapte al 
+contenedor) se aplica a todas las imagenes la propiedad max-widt con un valor del 100%. Si el usuario esta en un navegador muy viejo podemos definir la altura (height) con el valor de auto para que la imagen no se deforme y la altura se adapte al contenedor*/
+
 img {
-  max-width: 100%;
+  max-width: 100%;  /*maxima anchura*/
   height: auto;
 }
 
+/*le aplicamos las dimensiones al article*/
 .card {
   border: medium solid black;
   width: 400px;
@@ -12,13 +16,15 @@ img {
 .card img {
   background-color: blanchedalmond;
   height: 300px;
-  object-fit: fill; /* default */
-  object-fit: cover;
-  object-fit: none;
-  object-fit: contain;
-  object-fit: scale-down; /* toma el valor que sea menor de los valores contain y none */
+
+  /*para que la imagen no quede "deformada" utilizamos dos propiedades: object-fit y object-position*/
+  object-fit: fill; /* default, rellena, trata de ajustar las dimensiones de la imagen al tamaño que el hemos especificado sin contar su proporcion*/
+  object-fit: cover; /*la imagen no se deforma pero se corrio, se activa el object position, por lo tanto toma los valores por defecto que tiene este. En este caso toma el valor 50% de x y el 50% en y. Si le pongo el position left top le estoy diciendo que la imagen empiece desde donde empieza la izquierda y desde empieza arriba.Si le pongo el position right bottom la imagen empieza desde la derecha y la de abajo */
+  object-fit: none;  /*significa que la imagen no se adapte al tamaño de la caja, escala la imagen al tamaño real segun los valores de object position*/
+  object-fit: contain; /*se ve la imagen completa, este valor tambien toma las referencias de object position. Si el objec position tiene como valor 50% 50% la imagen queda en el 50% de x y en el 50% de y. Con esta propiedad corremos riesgo de que quede parte de la caja sin imagen. Si la popiedad object position tiene la propiedad right bottom la imagen se coloca abajo. Aca el left y right no se ve, ya que la imagen se asegura de que tome todo su ancho, pero si se nota la diferencia cuando ponemos si la imagen va abajo o para arriba o con porcentajes(la x). Con el valor -50px center la imagen se va para la izquierda(o sea queda espacio en la derecha) y esta centrado en el eje y*/
+  object-fit: scale-down; /* toma el valor que sea menor de los valores contain y none, en la practica casi no lo utilizamos */
   object-position: left top;
   object-position: right bottom;
   object-position: -50px center;
-  object-position: 50% 50%;
+  object-position: 50% 50%; /*propiedad por defecto, 50% en x, 50% en y*/
 }

@@ -1,15 +1,17 @@
+/*border collapse es propiedad exclusiva de tablas*/
+
 .table {
   font-size: 3rem;
-  border-collapse: collapse;
-  border-collapse: separate; /* default */
-  empty-cells: hide;
-  empty-cells: show; /* default */
+  border-collapse: collapse; /*Las celdas de tabla adyacentes fusionarán sus bordes, no hay espacio entre las celdas.*/ 
+  border-collapse: separate; /* default, Cada celda de la tabla mostrará sus propios bordes*/
+  empty-cells: hide; /*podemos ocultar las celdas que no contienen nada solo si el borde collapse tiene el valor por defecto separate*/
+  empty-cells: show; /* default, muestra las celdas que no contienen nada solo si el borde collapse tiene el valor por defecto separate*/
 }
 
 table,
 td,
 th {
-  border: medium solid black;
-  border-spacing: 0;
-  border-spacing: 1rem;
+  border: medium solid black; /*darle borde a la tabla, td y th*/
+  border-spacing: 0; /*hace el efecto como border collapse collapse*/
+  border-spacing: 1rem; /*la distancia de los bordes de td y th y table*/
 }
