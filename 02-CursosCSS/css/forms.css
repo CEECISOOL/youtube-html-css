@@ -1,7 +1,9 @@
 html {
-  box-sizing: border-box;
-  font-size: 16px;
+  box-sizing: border-box; /*Todas las cajas: el ancho y la altura del elemento se aplican a todas las partes del elemento: el contenido, el relleno y los bordes*/
+  font-size: 16px; /*tamaño base*/
 }
+
+/*a todos los elementos antes y a todos los elementos despues aplicarle un box sizing heredado*/
 
 *,
 *::after,
@@ -10,6 +12,8 @@ html {
 }
 
 .contact-form {
+
+  /* me creo variables que sean validas dentro del formulario(form-text-color, form-placeholder-color, form-success-color form-error-color, form-bg-color, form-border-color) */
   --form-text-color: #666;
   --form-placeholder-color: #006999;
   --form-success-color: #4caf50;
@@ -18,53 +22,58 @@ html {
   --form-border-color: #222;
 
   background-color: var(--form-bg-color);
-  border: thin solid var(--form-border-color);
+  border: thin solid var(--form-border-color);  /*con el borde se crea un desbordamiento, entonces tengo q aplicarle el box sizing con un valor de border box*/
+
+  /*margin left y right auto para que el formulario se centre */
   margin-left: auto;
   margin-right: auto;
   padding: 2rem;
-  width: 80%;
+  width: 80%; /*ancho*/
 }
 
-.contact-form > * {
-  display: block;
+.contact-form > * { /*dentro de contac form a los hijos directos*/
+  display: block; /*hacemos que los elementos del formulario no esten uno al lado del otro(en linea) sino que sean elementos en bloque asi los elementos quedan uno abajo del otro*/
   width: 100%;
-  margin-bottom: 2rem;
-  font-family: sans-serif;
-  font-size: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  color: var(--form-text-color);
-  caret-color: var(--form-placeholder-color);
+  margin-bottom: 2rem;  /*para que se separen*/
+  font-family: sans-serif; /*la letra del formulario y la de texarea ahora son iguales*/
+  font-size: 1rem; 
+  padding: 0.5rem; /*espaciado a los elementos del formulario a los 4 lados*/
+  border-radius: 0.25rem; /*borde muy poco redondeado*/
+  color: var(--form-text-color); /*color de letra para cuando llenamos el formulario*/
+  caret-color: var(--form-placeholder-color); /*color de la linea del cursor tiene el mismo color que el de placeholder*/
 }
 
-.contact-form > *::placeholder {
-  color: var(--form-placeholder-color);
+.contact-form > *::placeholder {  /*a los elementos que estan dentro del formulario y que son hijos directos pero que tengan el placeholder*/
+  color: var(--form-placeholder-color);  /*color de letra del placeholder*/
 }
 
-.contact-form > *[required]:invalid {
-  border: thin solid var(--form-error-color);
+.contact-form > *[required]:invalid { /*dentro de contact form, los hijos directos que tengan el valor de invalido*/
+  border: thin solid var(--form-error-color);/*ponerle el borde rojo cuando los elementos del formulario esten vacios, tengan valor invalidos y sean requeridos*/
 }
 
-.contact-form > *[required]:valid {
-  border: thin solid var(--form-success-color);
+.contact-form > *[required]:valid {  /*dentro de contact form, los hijos directos que tengan el valor invalido*/
+  border: thin solid var(--form-success-color);  /*ponerle el borde del color definido(verde) cuando los elementos del formulario tengan un valor valido*/
 }
 
-.contact-form input[type="submit"] {
+.contact-form input[type="submit"] { /*dentro de la clase contact form-> el input de tipo submit*/
   margin-bottom: 0;
+  /*margin left y right auto para que el boton se centre */
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
-  background-color: var(--form-placeholder-color);
-  font-weight: bold;
-  font-size: 1.25rem;
-  color: #fff;
+  width: 30%;  /*para que el boton sea diferente y mas chico que los elementos del formulario*/
+  background-color: var(--form-placeholder-color); /*color del fondo del boton, usamos el mismo que el del placeholder*/
+  font-weight: bold; /*letra con mayor grosor*/
+  font-size: 1.25rem; /*tamaño de letra*/
+  color: #fff; /*color de letra*/
 }
 
-.contact-form input[type="submit"]:hover {
-  cursor: pointer;
-  opacity: 0.75;
+.contact-form input[type="submit"]:hover {  /*para el boton de enviar, hover significa que cuando pase el mouse por el boton*/
+  cursor: pointer; /*cursor: Establece el cursor del mouse al pasar el elemento.Los valores son: ·default establece el cursor en el valor predeterminado del elemento. Para un enlace, sería un puntero. Para el texto sería un cursor de selección. ·auto: auto. ·pointer;puntero. ·move;  Muevete. ·crosshair; punto de mira. ·text;texto. ·wait;Espere. ·help-resize;ayudar a cambiar el tamaño. ·ne-resize; ne-cambiar el tamaño. ·nw-resize;nw-cambiar tamaño. ·n-resize;n-cambiar tamaño. ·se-resize;cambiar el tamaño. ·sw-resize;sw-cambiar tamaño. ·s-resize;s-cambiar tamaño. ·w-resize; w-cambiar tamaño.
+  */
+  /*pointer: se forma la manito para enviar el formulario cuando pase por el boton*/
+  opacity: 0.75;  /*cuando pasemos por el boton hay un cambio visual*/
 }
 
-.contact-form textarea {
-  resize: none;
+.contact-form textarea {  /*dentro del formulario, la textarea*/
+  resize: none; /*la textarea se puede modificar el tamaño con el mouse, con el valor none, sacamos esa opcion. Otros valores son horizontal(para que se modifique de forma horizontal) o vertical(para que se modifique de forma vertical)*/
 }
