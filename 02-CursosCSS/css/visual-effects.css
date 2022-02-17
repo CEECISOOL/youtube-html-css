@@ -20,41 +20,45 @@ html {
 }
 
 .shadows {
-  color: navy;
+  color: navy;  
   font-size: 2rem;
   text-align: center;
-  /* box-shadow: mov-x mov-y blur-radius spread-blur color inset/outset; */
-  box-shadow: 1rem 1rem 1rem 1rem;
-  box-shadow: -1rem -1rem 1rem 1rem;
+  /* box-shadow: mov-x mov-y blur-radius(desenfoque) spread-blur(la expansion del desenfoque) color inset/outset; */
+
+  /*si no coloco el color de la sombra toma por defecto el color navy(el color de la letra)*/
+  box-shadow: 1rem 1rem 1rem 1rem; /*que se desplace 1rem por x y 1rem por y, que le blur sea de 1rem, que la expansion sea de 1rem. Esta sombra sale del lado derecho y abajo*/
+  box-shadow: -1rem -1rem 1rem 1rem;  /*con numeros negativos se invierte la sombra, se pone del lado izquierdo y arriba*/
   box-shadow: 1rem 1rem 1rem 1rem #0005;
-  box-shadow: 1rem 1rem 1rem 1rem #f00 inset;
+  box-shadow: 1rem 1rem 1rem 1rem #f00 inset; /*inset sombra interna, ourset sombra externa(default)*/
   box-shadow: 1rem 1rem 2rem 0.5rem #0007;
   /* text-shadow: mov-x mov-y blur-radius color; */
-  text-shadow: -1rem -1rem 0.5rem hotpink;
+  text-shadow: -1rem -1rem 0.5rem hotpink; /*sombra para el texto*/
 }
 
 .shadows-multiple {
   font-size: 2rem;
   text-align: center;
   box-shadow: 1rem 1rem 1rem 1rem #0005, 1rem 1rem 1rem 1rem #f00 inset,
-    -0.5rem -0.5rem 0.5rem 2rem hotpink;
+    -0.5rem -0.5rem 0.5rem 2rem hotpink; /*con la coma estoy aplicando tres sombras*/
   text-shadow: -1rem -1rem 0.5rem navy, 1rem 1rem 0.5rem greenyellow;
 }
 
 .drop-shadow {
   width: 600px;
   height: auto;
-}
+} /*para que sea responsiva la imagen*/
 
 .drop-shadow img {
   max-width: 100%;
   height: auto;
   /* filter: drop-shadow(mov-x mov-y blur-radius color); */
-  box-shadow: 1rem 1rem 1rem 1rem #f00;
-  filter: drop-shadow(1rem 1rem 1rem orangered);
+  box-shadow: 1rem 1rem 1rem 1rem #f00; /*sombra a la caja*/
+  filter: drop-shadow(1rem 1rem 1rem orangered); /*darle sombras a la imagen, TIENEN QUE SER IMAGEN PNJ CON TRANSPARENCIA, no se puede aplicar multiples sombras*/
   filter: drop-shadow(1rem 1rem 1rem steelblue);
 }
-
+/*en el background image utilizamos linear-gradient para hace degradados, entre parentesis 
+le podemos pasar los grados y los colores que va  tener ese degradado. En vez de usar grados tambien podemos utilizar palabras, por ejemlo quiero que vayas a la derecha seria to right(el primer color va a la izquierda y el ultimo a la derecha)
+Podemos ponerle proporcion a los colores, dandole porcentajes a que valor vayan. Le ponemos los porcentajes al lado del color*/
 .linear-gradient {
   background-image: linear-gradient(red, green);
   background-image: linear-gradient(red, green, blue);
@@ -65,25 +69,26 @@ html {
   background-image: linear-gradient(180deg, red, green, blue);
   background-image: linear-gradient(270deg, red, green, blue);
   background-image: linear-gradient(360deg, red, green, blue);
-  background-image: linear-gradient(to right, red, green, blue);
-  background-image: linear-gradient(to top, red, green, blue);
-  background-image: linear-gradient(to bottom, red, green, blue);
-  background-image: linear-gradient(to left, red, green, blue);
-  background-image: linear-gradient(to top left, red, green, blue);
-  background-image: linear-gradient(to top right, red, green, blue);
-  background-image: linear-gradient(to bottom left, red, green, blue);
-  background-image: linear-gradient(to bottom right, red, green, blue);
-  background-image: linear-gradient(90deg, red 30%, green 60%, blue);
-  background-image: linear-gradient(90deg, green 33%, white 34% 67%, red 68%);
+  background-image: linear-gradient(to right, red, green, blue); /*el ultimo color va estar en la izquierda*/
+  background-image: linear-gradient(to top, red, green, blue);/*el ultimo color va estar arriba*/
+  background-image: linear-gradient(to bottom, red, green, blue);/*el ultimo color va estar abajo*/
+  background-image: linear-gradient(to left, red, green, blue);/*el ultimo color va estar en la izquierda*/
+  background-image: linear-gradient(to top left, red, green, blue); /*el ultimo color va estar en la esquina superior izquierda*/
+  background-image: linear-gradient(to top right, red, green, blue);/*el ultimo color va estar en la esquina superior derecha*/
+  background-image: linear-gradient(to bottom left, red, green, blue);/*el ultimo color va estar en la esquina inferior izquierda*/
+  background-image: linear-gradient(to bottom right, red, green, blue);/*el ultimo color va estar en la esquina inferior derecha*/
+  background-image: linear-gradient(90deg, red 30%, green 60%, blue);  /*el rojo va hasta el 30%, el verde va hasta el 60%*/
+  background-image: linear-gradient(90deg, green 33%, white 34% 67%, red 68%); /*el verde va hasta el 33%, el blanco va desde el 34% hasta el 67% y el rojo empieza en 68%. El verde como es el primer color se entiende que empieza del 0% y el rojo como es el ultimo color no tiene sentido ponerle que va hasta el 100%*/
 }
-
+/*degradado radial: radial-gradient. Es de forma de circulo y de elipses, si le pongo circle mas el grado, ese grado signifca el radio del degradado.
+Tambien podemos ir manejando los porcetajes*/
 .radial-gradient {
   background-image: radial-gradient(cyan, magenta);
   background-image: radial-gradient(cyan, magenta, yellow);
   background-image: radial-gradient(circle 4rem, cyan, magenta, yellow);
-  background-image: radial-gradient(circle 4rem, cyan 30%, magenta 80%, yellow);
+  background-image: radial-gradient(circle 4rem, cyan 30%, magenta 80%, yellow); /*cyan va al 30%, magenta hasta el 80%, y lo demas hasta el amarillo */
   background-image: radial-gradient(
-    circle 100px,
+    circle 100px,  /*100px de radio*/
     cyan 30%,
     magenta 60%,
     yellow 90%
