@@ -80,7 +80,8 @@ Podemos ponerle proporcion a los colores, dandole porcentajes a que valor vayan.
   background-image: linear-gradient(90deg, red 30%, green 60%, blue);  /*el rojo va hasta el 30%, el verde va hasta el 60%*/
   background-image: linear-gradient(90deg, green 33%, white 34% 67%, red 68%); /*el verde va hasta el 33%, el blanco va desde el 34% hasta el 67% y el rojo empieza en 68%. El verde como es el primer color se entiende que empieza del 0% y el rojo como es el ultimo color no tiene sentido ponerle que va hasta el 100%*/
 }
-/*degradado radial: radial-gradient. Es de forma de circulo y de elipses, si le pongo circle mas el grado, ese grado signifca el radio del degradado.
+/*degradado radial: radial-gradient. Es de forma de circulo y de 
+elipses, si le pongo circle mas el grado, ese grado signifca el radio del degradado.
 Tambien podemos ir manejando los porcetajes*/
 .radial-gradient {
   background-image: radial-gradient(cyan, magenta);
@@ -94,55 +95,55 @@ Tambien podemos ir manejando los porcetajes*/
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at top,
+    circle 100px at top, /*usamos la palabra at para decirle que empiece desde arriba en el centro*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at bottom,
+    circle 100px at bottom, /*usamos la palabra at para decirle que empiece desde abajo en el centro*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at left,
+    circle 100px at left, /*usamos la palabra at para decirle que empiece desde la izquierda en el centro*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at right,
+    circle 100px at right, /*usamos la palabra at para decirle que empiece desde la derecha en el centro*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at center,
+    circle 100px at center, /*usamos la palabra at para decirle que empiece desde el centro, es el valor por default*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at top left,
+    circle 100px at top left, /*usamos la palabra at para decirle que empiece desde la esquina superior izquierda*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at top right,
+    circle 100px at top right, /*usamos la palabra at para decirle que empiece desde la esquina superior derecha*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at bottom left,
+    circle 100px at bottom left, /*usamos la palabra at para decirle que empiece desde la esquina inferior izquierda*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
   background-image: radial-gradient(
-    circle 100px at bottom right,
+    circle 100px at bottom right, /*usamos la palabra at para decirle que empiece desde la esquina inferior derecha*/
     cyan 30%,
     magenta 60%,
     yellow 90%
@@ -154,20 +155,20 @@ Tambien podemos ir manejando los porcetajes*/
     yellow 90%
   );
   background-image: radial-gradient(
-    ellipse 50px 100px,
+    ellipse 50px 100px,  /*en vez de tener un radio circular tenemos un radio eliptico con la palabra ellipse. Y ademas tenemos que aplicarle un valor para x y uno para y*/
     cyan 30%,
     magenta 60%,
     yellow 90%
   );
-  background-image: radial-gradient(circle 100px, red 50%, white 50%);
+  background-image: radial-gradient(circle 100px, red 50%, white 50%);  /*se forma un circulo rojo degradado con el blanco, para evitar esto y que se quede un circulo sin degradado tenemos que poner que el blanco empiece donde termine el rojo(en decir, el rojo empieza en el 50% y el blanco empieza en el 50%)*/
 }
 
-.conic-gradient {
+.conic-gradient {  /*este seria como el circulo cromatico*/
   background-image: conic-gradient(red, green);
   background-image: conic-gradient(red, green, blue);
   background-image: conic-gradient(red 0% 50%, green 60%, blue 80%);
   background-image: conic-gradient(
-    red 0deg 90deg,
+    red 0deg 90deg,  /*va con grados*/
     green 120deg 240deg,
     blue 270deg
   );
@@ -198,13 +199,13 @@ Tambien podemos ir manejando los porcetajes*/
 }
 
 .repeat-gradient-linear {
-  background-image: repeating-linear-gradient(
+  background-image: repeating-linear-gradient( /*es lo mismo que degradado linear pero repite las lineas con la funcion repeating*/
     red 0 10px,
     green 10px 20px,
     blue 20px 30px
   );
   background-image: repeating-linear-gradient(
-    45deg,
+    45deg, /*lineas repetidas a 45grados*/
     red 0 10px,
     green 10px 20px,
     blue 20px 30px
